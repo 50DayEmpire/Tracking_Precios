@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Historial</class>
+ <widget class="QMainWindow" name="Historial">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>796</width>
+    <height>497</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="cursor">
+       <cursorShape>SizeBDiagCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(175, 175, 175);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,7">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="Frame_Sup">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(22, 20, 32);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>791</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:700; color:#ffffff;&quot;&gt;HISTORIAL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_conte">
+         <property name="cursor">
+          <cursorShape>UpArrowCursor</cursorShape>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="label_producto">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>271</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Samsung Galaxy S22&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>90</y>
+            <width>161</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Historial de precios&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QFrame" name="frame_2">
+          <property name="geometry">
+           <rect>
+            <x>105</x>
+            <y>131</y>
+            <width>581</width>
+            <height>91</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> &lt;table id=&quot;tablaAlumnos&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;Número de Cuenta&lt;/th&gt;
+                &lt;th&gt;Nombre&lt;/th&gt;
+                &lt;th&gt;Nota Final&lt;/th&gt;
+                &lt;th&gt;Acciones&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody id=&quot;cuerpoTabla&quot;&gt;&lt;/tbody&gt;
+    &lt;/table&gt;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QTableWidget" name="tableWidget">
+             <column>
+              <property name="text">
+               <string>Nueva columna</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nueva columna</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>240</y>
+            <width>221</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;Alerta si baja de precio de:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton">
+          <property name="geometry">
+           <rect>
+            <x>330</x>
+            <y>370</y>
+            <width>131</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial Rounded MT Bold</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(87, 114, 209);
+color: rgb(255, 255, 255);
+font: 700 9pt &quot;Segoe UI&quot;;
+font: 9pt &quot;Arial Rounded MT Bold&quot;;
+border-radius:8px</string>
+          </property>
+          <property name="text">
+           <string>+ Añadir Alerta</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="geometry">
+           <rect>
+            <x>700</x>
+            <y>20</y>
+            <width>75</width>
+            <height>24</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Regresar</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>290</y>
+            <width>561</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
