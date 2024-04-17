@@ -1,3 +1,8 @@
-from fermady import Fermady
+#para abrir la ventana del historial
 
-app = Fermady()
+from historial import Whistorial 
+app = Whistorial()
+
+#para abrir la ventana de URL
+#from URL import WURL 
+#app = WURL()
