@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>520</height>
+    <width>750</width>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,22 +87,30 @@ background-color: rgb(30, 30, 30);</string>
               <height>16777215</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
-	background-color: rgb(198, 103, 7);
-	font: 700 9pt &quot;Arial&quot;;
-	border-radius:2 px;
-	Color: white;
-
+background-color: transparent;
+        border: none; 
+        color: #fff; 
+        padding: 10px 20px;
+        font-size: 20px;
+        font-weight: bold; 
+        cursor: pointer; 
 }
 
 </string>
             </property>
             <property name="text">
-             <string>Regresar</string>
+             <string>⭠</string>
             </property>
            </widget>
           </item>
@@ -172,76 +180,6 @@ background-color: rgb(30, 30, 30);</string>
             <property name="lineWidth">
              <number>0</number>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>10</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>16</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(8, 3, 245);
-	border-radius: 10px;
-	Color: white;
-	padding: 10px;
-	margin: 20px;
-
-</string>
-               </property>
-               <property name="text">
-                <string>+ Añadir</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>200</width>
-                 <height>250</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">image: url(:/GMG/GMG2.png);
-padding: -15px;
-padding-top: 20px;</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </widget>
           </item>
           <item>
@@ -255,56 +193,7 @@ padding-top: 20px;</string>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout" stretch="30,10,40">
-             <property name="spacing">
-              <number>10</number>
-             </property>
-             <property name="leftMargin">
-              <number>9</number>
-             </property>
-             <property name="topMargin">
-              <number>3</number>
-             </property>
-             <property name="rightMargin">
-              <number>9</number>
-             </property>
-             <property name="bottomMargin">
-              <number>10</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="frame_7">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_3">
-                <item>
-                 <widget class="QLabel" name="label_3">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>200</width>
-                    <height>100</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">image: url(:/GMG/GMG.png);</string>
-                  </property>
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
+            <layout class="QVBoxLayout" name="verticalLayout" stretch="2,6,0">
              <item>
               <widget class="QFrame" name="frame_6">
                <property name="frameShape">
@@ -383,11 +272,37 @@ margin: 5px;</string>
                    <string notr="true">margin:10px;</string>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Imagen del producto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Imagen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
                </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="font">
+                <font>
+                 <family>Arial</family>
+                 <pointsize>16</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(8, 3, 245);
+	border-radius: 10px;
+	Color: white;
+	padding: 10px;
+	margin: 20px;
+
+</string>
+               </property>
+               <property name="text">
+                <string>+ Añadir</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -403,7 +318,7 @@ margin: 5px;</string>
   </widget>
  </widget>
  <resources>
-  <include location="../imagenes/imagenes.qrc"/>
+  <include location="imagenes/imagenes.qrc"/>
  </resources>
  <connections/>
 </ui>
