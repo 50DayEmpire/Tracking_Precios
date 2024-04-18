@@ -188,7 +188,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/GMG.png);</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/GMG.png);</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -216,7 +216,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/Colonia.png);</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/Colonia.png);</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -244,7 +244,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/Jetstereo.png);</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/Jetstereo.png);</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -305,7 +305,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/Motomundo.png)</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/Motomundo.png)</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -333,7 +333,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/LadyLee.jpg);</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/LadyLee.jpg);</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -361,7 +361,7 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Logos_tiendas/Jordan.png);</string>
+                  <string notr="true">image: url(:/Nuevos/imagenes/Jordan.png);</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -387,7 +387,6 @@ background-color: rgb(30, 30, 30);</string>
  </widget>
  <resources>
   <include location="imagenes.qrc"/>
-  <include location="../imagenes/logos.qrc"/>
  </resources>
  <connections/>
 </ui>
