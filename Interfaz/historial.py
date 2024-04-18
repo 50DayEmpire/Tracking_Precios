@@ -1,5 +1,6 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication
+import funciones as f
 # from PyQt6.QtWidgets import QMessageBox
 
 class Historial():
@@ -12,3 +13,9 @@ class Whistorial():
         self.app = QApplication([])
         self.login = Historial() 
         self.app.exec()
+
+
+class URL():
+    def __init__(self):
+        self.ventana = uic.loadUi("Interfaz/gui/URL.ui")
+        self.ventana.show()
