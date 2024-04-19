@@ -125,7 +125,7 @@ background-color: rgb(30, 30, 30);</string>
             <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true">display: flexbox;</string>
+            <string notr="true"/>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -148,7 +148,7 @@ background-color: rgb(30, 30, 30);</string>
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1">
+              <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,1">
                <property name="spacing">
                 <number>20</number>
                </property>
@@ -188,10 +188,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo/GMG.png);</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/GMG.png</normaloff>imagenes/GMG.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>179</width>
+                   <height>143</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -216,10 +226,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo/Colonia.png);</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/logcol.png</normaloff>imagenes/logcol.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>179</width>
+                   <height>173</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -244,11 +264,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo/Jetstereo.png);
-</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/Jetstereo.png</normaloff>imagenes/Jetstereo.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>169</width>
+                   <height>173</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -256,6 +285,9 @@ background-color: rgb(30, 30, 30);</string>
                 </widget>
                </item>
               </layout>
+              <zorder>btnGallo</zorder>
+              <zorder>btnJets</zorder>
+              <zorder>btnColonia</zorder>
              </widget>
             </item>
             <item>
@@ -306,10 +338,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo/Motomundo.png)</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/Motomundo.png</normaloff>imagenes/Motomundo.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>215</width>
+                   <height>173</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -334,10 +376,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo/LadyLee.jpg);</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/LadyLee.jpg</normaloff>imagenes/LadyLee.jpg</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>221</width>
+                   <height>180</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -362,10 +414,20 @@ background-color: rgb(30, 30, 30);</string>
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">image: url(:/Nuevo//Jordan.png);</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>imagenes/Jordan.png</normaloff>imagenes/Jordan.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>179</width>
+                   <height>173</height>
+                  </size>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
