@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Fermady Prices</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>imagenes/hucha.png</normaloff>imagenes/hucha.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <property name="spacing">
@@ -91,6 +95,46 @@ background-color: rgb(30, 30, 30);</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
+             <widget class="QPushButton" name="btnatras">
+              <property name="font">
+               <font>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: transparent;
+        border: none; 
+        color: #fff; 
+        padding: 10px 20px;
+        font-size: 20px;
+        font-weight: bold; 
+        cursor: pointer; 
+}</string>
+              </property>
+              <property name="text">
+               <string>←</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>41</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QLabel" name="label">
               <property name="font">
                <font>
@@ -109,12 +153,25 @@ background-color: rgb(30, 30, 30);</string>
                <number>0</number>
               </property>
               <property name="text">
-               <string>TRACKING DE PRECIOS</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;TRACKING DE PRECIOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>112</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </widget>
@@ -125,7 +182,7 @@ background-color: rgb(30, 30, 30);</string>
             <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true">display: flexbox;</string>
+            <string notr="true"/>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -173,7 +230,7 @@ background-color: rgb(255, 255, 255);</string>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1">
                   <item>
-                   <widget class="QLabel" name="label_2">
+                   <widget class="QLabel" name="empresa">
                     <property name="font">
                      <font>
                       <family>Leelawadee UI</family>
@@ -191,7 +248,7 @@ background-color: rgb(255, 255, 255);</string>
                      <number>0</number>
                     </property>
                     <property name="text">
-                     <string>(aqui inserta nombre de la tienda)</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -206,6 +263,9 @@ background-color: rgb(255, 255, 255);</string>
                       <pointsize>12</pointsize>
                       <bold>true</bold>
                      </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(255, 255, 255);
@@ -413,8 +473,8 @@ margin: 7px;
   </layout>
  </widget>
  <resources>
-  <include location="imagenes.qrc"/>
-  <include location="../imagenes/logos.qrc"/>
+  <include location="imagenes/imagenes.qrc"/>
+  <include location="logos.qrc"/>
  </resources>
  <connections/>
 </ui>

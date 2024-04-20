@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>518</height>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,7 +80,7 @@ background-color: rgb(30, 30, 30);</string>
            <number>11</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnatras">
             <property name="maximumSize">
              <size>
               <width>16777205</width>

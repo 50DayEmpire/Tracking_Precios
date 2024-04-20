@@ -6,12 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
-    <height>462</height>
+    <width>706</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Main Menu</string>
+   <string>Fermady Prices</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>imagenes/hucha.png</normaloff>imagenes/hucha.png</iconset>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <property name="toolTipDuration">
+   <number>-1</number>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <property name="spacing">
@@ -58,7 +71,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,7">
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,7">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -77,8 +90,7 @@
          <item>
           <widget class="QFrame" name="frame_2">
            <property name="styleSheet">
-            <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(30, 30, 30);</string>
+            <string notr="true">background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -90,6 +102,21 @@ background-color: rgb(30, 30, 30);</string>
             <number>0</number>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QLabel" name="label">
               <property name="font">
@@ -98,6 +125,9 @@ background-color: rgb(30, 30, 30);</string>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
+              </property>
+              <property name="toolTipDuration">
+               <number>0</number>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
@@ -109,7 +139,7 @@ background-color: rgb(30, 30, 30);</string>
                <number>0</number>
               </property>
               <property name="text">
-               <string>TRACKING DE PRECIOS</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#f7f7f7;&quot;&gt;¡EMPIEZA A HACER TRACKING!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -125,7 +155,7 @@ background-color: rgb(30, 30, 30);</string>
             <bool>false</bool>
            </property>
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">background-color: rgb(222, 222, 222);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
@@ -134,13 +164,34 @@ background-color: rgb(30, 30, 30);</string>
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QFrame" name="frame_4">
               <property name="autoFillBackground">
                <bool>false</bool>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: transparent;</string>
+               <string notr="true">QPushButton {
+background-color: transparent;
+}
+QPushButton:hover{
+ 	background-color: rgb(199, 199, 199);
+ 	border-radius:10px; 
+}</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -187,8 +238,18 @@ background-color: rgb(30, 30, 30);</string>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Amplia gama de productos, lo último en tecnología de las marcas más exclusivas del país &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>false</bool>
+                 </property>
                  <property name="styleSheet">
-                  <string notr="true"/>
+                  <string notr="true">
+</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -224,6 +285,12 @@ background-color: rgb(30, 30, 30);</string>
                  </property>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sol, playa y tus ofertas preferidas solo en la Colonia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
                  </property>
                  <property name="styleSheet">
                   <string notr="true"/>
@@ -263,6 +330,12 @@ background-color: rgb(30, 30, 30);</string>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tecnología e innovación a tu medida con Jetstereo!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -296,7 +369,13 @@ background-color: rgb(30, 30, 30);</string>
                <bool>false</bool>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: transparent;</string>
+               <string notr="true">QPushButton {
+background-color: transparent;
+}
+QPushButton:hover{
+ 	background-color: rgb(199, 199, 199);
+ 	border-radius:10px; 
+}</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -337,6 +416,12 @@ background-color: rgb(30, 30, 30);</string>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Compañía hondureña distribuidora de motocicletas de la más alta calidad&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -375,6 +460,15 @@ background-color: rgb(30, 30, 30);</string>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Todo para mi Hogar! La tienda por departamentos más grande y completa de Honduras.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>true</bool>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -383,7 +477,7 @@ background-color: rgb(30, 30, 30);</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/LadyLee.jpg</normaloff>imagenes/LadyLee.jpg</iconset>
+                   <normaloff>imagenes/LadyLee.png</normaloff>imagenes/LadyLee.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -413,6 +507,12 @@ background-color: rgb(30, 30, 30);</string>
                  <property name="cursor">
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;¡Somos tus socios en proyectos!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-2</number>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -421,7 +521,7 @@ background-color: rgb(30, 30, 30);</string>
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/Jordan.png</normaloff>imagenes/Jordan.png</iconset>
+                   <normaloff>imagenes/Jorda.png</normaloff>imagenes/Jorda.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -435,6 +535,9 @@ background-color: rgb(30, 30, 30);</string>
                 </widget>
                </item>
               </layout>
+              <zorder>btnLadyLee</zorder>
+              <zorder>btnMoto</zorder>
+              <zorder>btnJordan</zorder>
              </widget>
             </item>
            </layout>

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="Nuevo">
+    <file>hucha.png</file>
     <file>Colonia.png</file>
     <file>GMG.png</file>
     <file>GMG2.png</file>
