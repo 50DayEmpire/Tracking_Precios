@@ -89,7 +89,7 @@ background-color: rgb(30, 30, 30);</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>-1</pointsize>
+              <pointsize>1</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -104,7 +104,6 @@ background-color: transparent;
         padding: 10px 20px;
         font-size: 20px;
         font-weight: bold; 
-        cursor: pointer; 
 }
 
 </string>
