@@ -255,7 +255,7 @@ background-color: rgb(255, 255, 255);</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="btnPlusUrl">
                     <property name="font">
                      <font>
                       <family>Leelawadee UI</family>
