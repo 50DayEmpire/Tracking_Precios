@@ -279,7 +279,7 @@ margin: 5px;</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="btnProducto">
                <property name="font">
                 <font>
                  <family>Arial</family>

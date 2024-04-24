@@ -40,6 +40,8 @@ class MainWindow(QDialog):
     LeeClicked = pyqtSignal() 
     JordanClicked = pyqtSignal() 
 
+    
+
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_main.ui", self)
@@ -79,6 +81,8 @@ class MainWindow(QDialog):
         self.close()
 
 class Gallo(QDialog):
+    URLClicked = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -89,12 +93,19 @@ class Gallo(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        self.URLClicked.emit()  
+        self.close() 
         
     def back_to_main_window(self):
-            self.close() 
-            mainWin.show()  
+        self.close() 
+        mainWin.show()
+
 
 class Colonia(QDialog):
+    URLClicked = pyqtSignal()
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -105,12 +116,18 @@ class Colonia(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        self.URLClicked.emit()  
+        self.close() 
         
     def back_to_main_window(self):
             self.close()  
             mainWin.show() 
 
 class Jestereo(QDialog):
+    URLClicked = pyqtSignal()
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -121,12 +138,18 @@ class Jestereo(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        self.URLClicked.emit()  
+        self.close() 
         
     def back_to_main_window(self):
             self.close()  
             mainWin.show() 
 
 class Motomundo(QDialog):
+    URLClicked = pyqtSignal()
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -137,12 +160,18 @@ class Motomundo(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        self.URLClicked.emit()  
+        self.close() 
         
     def back_to_main_window(self):
             self.close()  
             mainWin.show() 
 
 class Lee(QDialog):
+    URLClicked = pyqtSignal()
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -153,13 +182,20 @@ class Lee(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        self.URLClicked.emit()  
+        self.close() 
         
     def back_to_main_window(self):
             self.close()  
             mainWin.show() 
 
 
-class Jordan(QDialog):
+class Jordan(QDialog):      
+    URLClicked = pyqtSignal() 
+      
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
@@ -170,10 +206,39 @@ class Jordan(QDialog):
         self.empresa.setFont(font)  
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        # Conectar señales a ranura
+        self.btnPlusUrl.clicked.connect(self.URL)
+
+    def URL(self):
+        print("Si funciona.")
+        self.URLClicked.emit()  
+        self.close()       
         
     def back_to_main_window(self):
             self.close()  
-            mainWin.show() 
+            mainWin.show()
+
+#clase añadir URL    
+class Anadir_URL(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("interfaz/gui/URL.ui", self)
+        self.resize(800, 600)  # Tamaño de la ventana
+        #volver
+        self.btnatras.clicked.connect(self.back_to_main_window)
+        #evaluar un producto con un url
+        self.btnProducto.clicked.connect(self.Anadir_producto)
+        
+    def back_to_main_window(self):
+            self.close()
+            #aqui tiene que depender de donde estemos 
+            thirdWin1.show() #<----- Aqui esta el detalle mire Jennifer
+
+    def Anadir_producto(self):
+        #despues de agregar la URL
+        print("Agregar url y mostrar imagen")
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -187,6 +252,14 @@ if __name__ == "__main__":
     thirdWin5 = Lee()
     thirdWin6 = Jordan()
 
+
+    fourthWin6 = Anadir_URL()
+    fourthWin5 = Anadir_URL()
+    fourthWin4 = Anadir_URL()
+    fourthWin3 = Anadir_URL()
+    fourthWin2 = Anadir_URL()
+    fourthWin1 = Anadir_URL()
+
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)
     mainWin.GalloClicked.connect(thirdWin1.show)
@@ -195,6 +268,13 @@ if __name__ == "__main__":
     mainWin.MotomundoClicked.connect(thirdWin4.show)
     mainWin.LeeClicked.connect(thirdWin5.show)
     mainWin.JordanClicked.connect(thirdWin6.show)
+
+    thirdWin1.URLClicked.connect(fourthWin1.show)
+    thirdWin2.URLClicked.connect(fourthWin2.show)
+    thirdWin3.URLClicked.connect(fourthWin3.show)
+    thirdWin4.URLClicked.connect(fourthWin4.show)
+    thirdWin5.URLClicked.connect(fourthWin5.show)
+    thirdWin6.URLClicked.connect(fourthWin6.show)
 
     splash.show()
 
