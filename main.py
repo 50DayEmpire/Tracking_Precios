@@ -10,15 +10,15 @@ from PyQt6 import QtWidgets
 #app = historial.Whistorial()
 Interfaz.ejecutar()
 #para abrir la ventana de URL
-#instancia = QtWidgets.QApplication([])
+# instancia = QtWidgets.QApplication([])
 
-#app = historial.URL()
+# app = historial.URL()
 
 #Conecta la función al botón
 
-#app.ventana.pushButton_2.clicked.connect(getTexto)
+# app.ventana.btnProducto.clicked.connect(getTexto)
 
-#instancia.exec()
+# instancia.exec()
 
 
 print("""
