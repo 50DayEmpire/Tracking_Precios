@@ -1,14 +1,14 @@
 import os
-from Interfaz import historial
+from Interfaz import Interfaz
 import funciones as f
 from PyQt6 import QtWidgets
 
-def getTexto():
-    texto = app.ventana.textEdit.toPlainText()    
-    f.agregarUrl(texto)
+# def getTexto():
+#     texto = app.ventana.textEdit.toPlainText()    
+#     f.agregarUrl(texto)
 
 #app = historial.Whistorial()
-
+Interfaz.ejecutar()
 #para abrir la ventana de URL
 #instancia = QtWidgets.QApplication([])
 

@@ -279,3 +279,43 @@ if __name__ == "__main__":
     splash.show()
 
     sys.exit(app.exec())
+
+def ejecutar():
+    app = QApplication(sys.argv)
+
+    splash = Splash()
+    mainWin = MainWindow()
+    thirdWin1 = Gallo()
+    thirdWin2 = Colonia()
+    thirdWin3 = Jestereo()
+    thirdWin4 = Motomundo()
+    thirdWin5 = Lee()
+    thirdWin6 = Jordan()
+
+
+    fourthWin6 = Anadir_URL()
+    fourthWin5 = Anadir_URL()
+    fourthWin4 = Anadir_URL()
+    fourthWin3 = Anadir_URL()
+    fourthWin2 = Anadir_URL()
+    fourthWin1 = Anadir_URL()
+
+    # Conectar señales y ranuras para controlar el flujo de la aplicación
+    splash.splashClosed.connect(mainWin.show)
+    mainWin.GalloClicked.connect(thirdWin1.show)
+    mainWin.ColoniaClicked.connect(thirdWin2.show)
+    mainWin.JestereoClicked.connect(thirdWin3.show)
+    mainWin.MotomundoClicked.connect(thirdWin4.show)
+    mainWin.LeeClicked.connect(thirdWin5.show)
+    mainWin.JordanClicked.connect(thirdWin6.show)
+
+    thirdWin1.URLClicked.connect(fourthWin1.show)
+    thirdWin2.URLClicked.connect(fourthWin2.show)
+    thirdWin3.URLClicked.connect(fourthWin3.show)
+    thirdWin4.URLClicked.connect(fourthWin4.show)
+    thirdWin5.URLClicked.connect(fourthWin5.show)
+    thirdWin6.URLClicked.connect(fourthWin6.show)
+
+    splash.show()
+
+    sys.exit(app.exec())
