@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
 from PyQt6 import uic
 import sys
+import os
 from PyQt6.QtGui import QFont, QPixmap
 
 
@@ -80,14 +81,14 @@ class MainWindow(QDialog):
         self.JordanClicked.emit()  
         self.close()
 
-class Gallo(QDialog):
+class tienda(QDialog):
     URLClicked = pyqtSignal()
 
-    def __init__(self):
+    def __init__(self,t):
         super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
+        uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("GALLO MAS GALLO")
+        self.empresa.setText(t)
         font = QFont("Arial", 20)
         font.setBold(True)  
         self.empresa.setFont(font)  
@@ -103,123 +104,10 @@ class Gallo(QDialog):
         self.close() 
         mainWin.show()
 
-
-class Colonia(QDialog):
-    URLClicked = pyqtSignal()
-    def __init__(self):
-        super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
-        self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("LA COLONIA")
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
-        
-        self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnPlusUrl.clicked.connect(self.URL)
-
-    def URL(self):
-        self.URLClicked.emit()  
-        self.close() 
-        
-    def back_to_main_window(self):
-            self.close()  
-            mainWin.show() 
-
-class Jestereo(QDialog):
-    URLClicked = pyqtSignal()
-    def __init__(self):
-        super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
-        self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("JESTEREO")
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
-        
-        self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnPlusUrl.clicked.connect(self.URL)
-
-    def URL(self):
-        self.URLClicked.emit()  
-        self.close() 
-        
-    def back_to_main_window(self):
-            self.close()  
-            mainWin.show() 
-
-class Motomundo(QDialog):
-    URLClicked = pyqtSignal()
-    def __init__(self):
-        super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
-        self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("MOTOMUNDO")
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
-        
-        self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnPlusUrl.clicked.connect(self.URL)
-
-    def URL(self):
-        self.URLClicked.emit()  
-        self.close() 
-        
-    def back_to_main_window(self):
-            self.close()  
-            mainWin.show() 
-
-class Lee(QDialog):
-    URLClicked = pyqtSignal()
-    def __init__(self):
-        super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
-        self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("LADY LEE")
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
-        
-        self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnPlusUrl.clicked.connect(self.URL)
-
-    def URL(self):
-        self.URLClicked.emit()  
-        self.close() 
-        
-    def back_to_main_window(self):
-            self.close()  
-            mainWin.show() 
-
-
-class Jordan(QDialog):      
-    URLClicked = pyqtSignal() 
-      
-    def __init__(self):
-        super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_GMG.ui", self)
-        self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText("EL JORDAN")
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
-        
-        self.btnatras.clicked.connect(self.back_to_main_window)
-        # Conectar señales a ranura
-        self.btnPlusUrl.clicked.connect(self.URL)
-
-    def URL(self):
-        print("Si funciona.")
-        self.URLClicked.emit()  
-        self.close()       
-        
-    def back_to_main_window(self):
-            self.close()  
-            mainWin.show()
-
 #clase añadir URL    
 class Anadir_URL(QMainWindow):
+    backClicked = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         uic.loadUi("interfaz/gui/URL.ui", self)
@@ -230,11 +118,12 @@ class Anadir_URL(QMainWindow):
         self.btnProducto.clicked.connect(self.Anadir_producto)
         
     def back_to_main_window(self):
+            self.backClicked.emit()
             self.close()
-            #aqui tiene que depender de donde estemos 
-            thirdWin1.show() #<----- Aqui esta el detalle mire Jennifer
 
     def Anadir_producto(self):
+        #Falta ejecutar el tracker Adecuado
+        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking" +" && scrapy crawl tracking_spider_jetstereo -o precio.jsonl -a url="+url)
         #despues de agregar la URL
         print("Agregar url y mostrar imagen")
 
@@ -245,12 +134,12 @@ if __name__ == "__main__":
 
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = Gallo()
-    thirdWin2 = Colonia()
-    thirdWin3 = Jestereo()
-    thirdWin4 = Motomundo()
-    thirdWin5 = Lee()
-    thirdWin6 = Jordan()
+    thirdWin1 = tienda("GALLO MÁS GALLO")
+    thirdWin2 = tienda("LA COLONIA")
+    thirdWin3 = tienda("JETSTEREO")
+    thirdWin4 = tienda("MOTOMUNDO")
+    thirdWin5 = tienda("LADY LEE")
+    thirdWin6 = tienda("EL JORDAN")
 
 
     fourthWin6 = Anadir_URL()
@@ -283,14 +172,15 @@ if __name__ == "__main__":
 def ejecutar():
     app = QApplication(sys.argv)
 
+    global splash, mainWin, thirdWin1
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = Gallo()
-    thirdWin2 = Colonia()
-    thirdWin3 = Jestereo()
-    thirdWin4 = Motomundo()
-    thirdWin5 = Lee()
-    thirdWin6 = Jordan()
+    thirdWin1 = tienda("GALLO MÁS GALLO")
+    thirdWin2 = tienda("LA COLONIA")
+    thirdWin3 = tienda("JETSTEREO")
+    thirdWin4 = tienda("MOTOMUNDO")
+    thirdWin5 = tienda("LADY LEE")
+    thirdWin6 = tienda("EL JORDAN")
 
 
     fourthWin6 = Anadir_URL()
@@ -315,6 +205,13 @@ def ejecutar():
     thirdWin4.URLClicked.connect(fourthWin4.show)
     thirdWin5.URLClicked.connect(fourthWin5.show)
     thirdWin6.URLClicked.connect(fourthWin6.show)
+
+    fourthWin1.backClicked.connect(thirdWin1.show)
+    fourthWin2.backClicked.connect(thirdWin2.show)
+    fourthWin3.backClicked.connect(thirdWin3.show)
+    fourthWin4.backClicked.connect(thirdWin4.show)
+    fourthWin5.backClicked.connect(thirdWin5.show)
+    fourthWin6.backClicked.connect(thirdWin6.show)
 
     splash.show()
 
