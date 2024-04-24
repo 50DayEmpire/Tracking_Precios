@@ -1,24 +1,25 @@
 import os
-from Interfaz import historial
-import funciones as f
-from PyQt6 import QtWidgets
+from Interfaz import Interfaz  
+#import funciones as f
+#from PyQt6 import QtWidgets
 
-def getTexto():
-    texto = app.ventana.textEdit.toPlainText()    
-    f.agregarUrl(texto)
+# def getTexto():
+#     texto = app.ventana.textEdit.toPlainText()    
+#     f.agregarUrl(texto)
 
+Interfaz()
 #app = historial.Whistorial()
 
 #para abrir la ventana de URL
-#instancia = QtWidgets.QApplication([])
+# instancia = QtWidgets.QApplication([])
 
-#app = historial.URL()
+# app = historial.URL()
 
 #Conecta la función al botón
 
-#app.ventana.pushButton_2.clicked.connect(getTexto)
+# app.ventana.btnProducto.clicked.connect(getTexto)
 
-#instancia.exec()
+# instancia.exec()
 
 
 print("""
