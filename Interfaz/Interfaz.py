@@ -5,7 +5,6 @@ import sys
 import os
 from PyQt6.QtGui import QFont, QPixmap
 
-
 class Splash(QMainWindow):
     splashClosed = pyqtSignal() 
 
@@ -31,7 +30,6 @@ class Splash(QMainWindow):
     def emit_splash_closed(self):
         self.close()
         self.splashClosed.emit()  
-
 
 class MainWindow(QDialog):
     GalloClicked = pyqtSignal()  
@@ -82,34 +80,32 @@ class MainWindow(QDialog):
         self.close()
 
 class tienda(QDialog):
-    URLClicked = pyqtSignal()
-
     def __init__(self,t):
         super().__init__()
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText(t)
+        self.empresa.setText(t[0])
         font = QFont("Arial", 20)
         font.setBold(True)  
         self.empresa.setFont(font)  
+        self.ventanaUrl = Anadir_URL(self,t[1])
         
         self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnPlusUrl.clicked.connect(self.URL)
+        self.btnPlusUrl.clicked.connect(self.crear_URL)
 
-    def URL(self):
-        self.URLClicked.emit()  
-        self.close() 
+    def crear_URL(self):
+        self.ventanaUrl.show()
+        self.hide()
         
     def back_to_main_window(self):
         self.close() 
         mainWin.show()
 
-#clase añadir URL    
 class Anadir_URL(QMainWindow):
-    backClicked = pyqtSignal()
-
-    def __init__(self):
+    def __init__(self,ventanaAnterior,tracker):
         super().__init__()
+        self.ventanaAnterior = ventanaAnterior
+        self.tracker = tracker
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
         #volver
@@ -118,77 +114,30 @@ class Anadir_URL(QMainWindow):
         self.btnProducto.clicked.connect(self.Anadir_producto)
         
     def back_to_main_window(self):
-            self.backClicked.emit()
+            self.ventanaAnterior.show()
             self.close()
 
     def Anadir_producto(self):
+        url = self.textEdit.toPlainText()
+        print(self.tracker)
+        #print("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -o precio.jsonl -a url="+url)
         #Falta ejecutar el tracker Adecuado
-        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking" +" && scrapy crawl tracking_spider_jetstereo -o precio.jsonl -a url="+url)
+        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -o precio.jsonl -a url="+url)
         #despues de agregar la URL
-        print("Agregar url y mostrar imagen")
-
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    splash = Splash()
-    mainWin = MainWindow()
-    thirdWin1 = tienda("GALLO MÁS GALLO")
-    thirdWin2 = tienda("LA COLONIA")
-    thirdWin3 = tienda("JETSTEREO")
-    thirdWin4 = tienda("MOTOMUNDO")
-    thirdWin5 = tienda("LADY LEE")
-    thirdWin6 = tienda("EL JORDAN")
-
-
-    fourthWin6 = Anadir_URL()
-    fourthWin5 = Anadir_URL()
-    fourthWin4 = Anadir_URL()
-    fourthWin3 = Anadir_URL()
-    fourthWin2 = Anadir_URL()
-    fourthWin1 = Anadir_URL()
-
-    # Conectar señales y ranuras para controlar el flujo de la aplicación
-    splash.splashClosed.connect(mainWin.show)
-    mainWin.GalloClicked.connect(thirdWin1.show)
-    mainWin.ColoniaClicked.connect(thirdWin2.show)
-    mainWin.JestereoClicked.connect(thirdWin3.show)
-    mainWin.MotomundoClicked.connect(thirdWin4.show)
-    mainWin.LeeClicked.connect(thirdWin5.show)
-    mainWin.JordanClicked.connect(thirdWin6.show)
-
-    thirdWin1.URLClicked.connect(fourthWin1.show)
-    thirdWin2.URLClicked.connect(fourthWin2.show)
-    thirdWin3.URLClicked.connect(fourthWin3.show)
-    thirdWin4.URLClicked.connect(fourthWin4.show)
-    thirdWin5.URLClicked.connect(fourthWin5.show)
-    thirdWin6.URLClicked.connect(fourthWin6.show)
-
-    splash.show()
-
-    sys.exit(app.exec())
 
 def ejecutar():
     app = QApplication(sys.argv)
 
-    global splash, mainWin, thirdWin1
+    #Creacion de ventanas
+    global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda("GALLO MÁS GALLO")
-    thirdWin2 = tienda("LA COLONIA")
-    thirdWin3 = tienda("JETSTEREO")
-    thirdWin4 = tienda("MOTOMUNDO")
-    thirdWin5 = tienda("LADY LEE")
-    thirdWin6 = tienda("EL JORDAN")
-
-
-    fourthWin6 = Anadir_URL()
-    fourthWin5 = Anadir_URL()
-    fourthWin4 = Anadir_URL()
-    fourthWin3 = Anadir_URL()
-    fourthWin2 = Anadir_URL()
-    fourthWin1 = Anadir_URL()
+    thirdWin1 = tienda(["GALLO MÁS GALLO","tracking_spider_GMG"])
+    thirdWin2 = tienda(["LA COLONIA","N/A"])
+    thirdWin3 = tienda(["JETSTEREO","tracking_spider_jetstereo"])
+    thirdWin4 = tienda(["MOTOMUNDO","N/A"])
+    thirdWin5 = tienda(["LADY LEE","N/A"])
+    thirdWin6 = tienda(["EL JORDAN","N/A"])
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)
@@ -198,20 +147,6 @@ def ejecutar():
     mainWin.MotomundoClicked.connect(thirdWin4.show)
     mainWin.LeeClicked.connect(thirdWin5.show)
     mainWin.JordanClicked.connect(thirdWin6.show)
-
-    thirdWin1.URLClicked.connect(fourthWin1.show)
-    thirdWin2.URLClicked.connect(fourthWin2.show)
-    thirdWin3.URLClicked.connect(fourthWin3.show)
-    thirdWin4.URLClicked.connect(fourthWin4.show)
-    thirdWin5.URLClicked.connect(fourthWin5.show)
-    thirdWin6.URLClicked.connect(fourthWin6.show)
-
-    fourthWin1.backClicked.connect(thirdWin1.show)
-    fourthWin2.backClicked.connect(thirdWin2.show)
-    fourthWin3.backClicked.connect(thirdWin3.show)
-    fourthWin4.backClicked.connect(thirdWin4.show)
-    fourthWin5.backClicked.connect(thirdWin5.show)
-    fourthWin6.backClicked.connect(thirdWin6.show)
 
     splash.show()
 
