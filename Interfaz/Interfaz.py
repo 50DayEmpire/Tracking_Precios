@@ -91,9 +91,10 @@ class tienda(QDialog):
         self.ventanaUrl = Anadir_URL(self,t[1])
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnactualizar.clicked.connect(self.act)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
 
-    def actualizar(self):
+    def act(self):
         f.actualizar(self)
 
     def crear_URL(self):
@@ -114,22 +115,20 @@ class Anadir_URL(QMainWindow):
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
         #buscar producto
-        #self.btnBuscar.clicked.connect(self.buscar)
+        self.lupa.clicked.connect(self.buscar)
         #Agregar un producto a la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
         
     def back_to_main_window(self):
-            self.ventanaAnterior.show()
-            self.close()
+        self.ventanaAnterior.show()
+        self.close()
 
     def buscar(self):
         url = self.textEdit.toPlainText()
         os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
 
     def Anadir_producto(self):
-        url = self.textEdit.toPlainText() #eliminar
-        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url) #eliminar
-        f.guardarTracker()
+        f.guardarTracker()  
 
 def ejecutar():
     app = QApplication(sys.argv)
