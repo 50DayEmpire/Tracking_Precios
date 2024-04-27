@@ -49,11 +49,11 @@ class MainWindow(QDialog):
 
         # Conectar señales a ranura
         self.btnGallo.clicked.connect(self.Gallo)
-        self.btnColonia.clicked.connect(self.Colonia)
+        self.btnSycom.clicked.connect(self.Colonia)
         self.btnJets.clicked.connect(self.Jestereo)
-        self.btnMoto.clicked.connect(self.Motomundo)
+        self.btnTecknos.clicked.connect(self.Motomundo)
         self.btnLadyLee.clicked.connect(self.Lee)
-        self.btnJordan.clicked.connect(self.Jordan)
+        self.btnRadioshack.clicked.connect(self.Jordan)
 
 
     def Gallo(self):

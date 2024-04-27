@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>827</width>
-    <height>441</height>
+    <width>850</width>
+    <height>534</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -98,7 +98,7 @@ background-color: rgb(30, 30, 30);</string>
              <widget class="QPushButton" name="btnatras">
               <property name="font">
                <font>
-                <pointsize>-1</pointsize>
+                <pointsize>1</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -109,7 +109,7 @@ background-color: rgb(30, 30, 30);</string>
                <string notr="true">QPushButton{
 background-color: transparent;
         border: none; 
-        color: #fff; 
+        color: #ffffff; 
         padding: 10px 20px;
         font-size: 20px;
         font-weight: bold; 
@@ -304,6 +304,9 @@ padding: 7px;
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">	background-color: rgb(87, 114, 209);
