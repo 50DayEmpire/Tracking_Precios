@@ -13,6 +13,8 @@ class trackingPrecios(scrapy.Spider):
 
     def parse(self, response):
         producto = Producto()
+        producto["url"] = getattr(self,"url",None)
+        producto["tienda"] = "JETSTEREO"
         producto["nombre"]=response.css("h1.product-page-title.m-1-::text").get()
         producto["precio"]=response.css("p.salePrice::text").get()
         #temp almacena la respuesta del selector "#__NEXT_DATA__::text" en formato json

@@ -4,6 +4,7 @@ from PyQt6 import uic
 import sys
 import os
 from PyQt6.QtGui import QFont, QPixmap
+import funciones as f
 
 class Splash(QMainWindow):
     splashClosed = pyqtSignal() 
@@ -85,6 +86,7 @@ class tienda(QDialog):
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
         self.empresa.setText(t[0])
+        self.nombreTienda = t[0]
         font = QFont("Arial", 20)
         font.setBold(True)  
         self.empresa.setFont(font)  
@@ -92,6 +94,9 @@ class tienda(QDialog):
         
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
+
+    def actualizar(self):
+        f.actualizar(self)
 
     def crear_URL(self):
         self.ventanaUrl.show()
@@ -110,20 +115,23 @@ class Anadir_URL(QMainWindow):
         self.resize(800, 600)  # Tamaño de la ventana
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
-        #evaluar un producto con un url
+        #buscar producto
+        #self.btnBuscar.clicked.connect(self.buscar)
+        #Agregar un producto a la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
         
     def back_to_main_window(self):
             self.ventanaAnterior.show()
             self.close()
 
-    def Anadir_producto(self):
+    def buscar(self):
         url = self.textEdit.toPlainText()
-        print(self.tracker)
-        #print("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -o precio.jsonl -a url="+url)
-        #Falta ejecutar el tracker Adecuado
-        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -o precio.jsonl -a url="+url)
-        #despues de agregar la URL
+        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
+
+    def Anadir_producto(self):
+        url = self.textEdit.toPlainText() #eliminar
+        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url) #eliminar
+        f.guardarTracker()
 
 def ejecutar():
     app = QApplication(sys.argv)
