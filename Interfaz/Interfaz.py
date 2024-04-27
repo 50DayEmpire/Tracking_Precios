@@ -49,11 +49,11 @@ class MainWindow(QDialog):
 
         # Conectar señales a ranura
         self.btnGallo.clicked.connect(self.Gallo)
-        self.btnColonia.clicked.connect(self.Colonia)
+        self.btnSycom.clicked.connect(self.Colonia)
         self.btnJets.clicked.connect(self.Jestereo)
-        self.btnMoto.clicked.connect(self.Motomundo)
+        self.btnTecknos.clicked.connect(self.Motomundo)
         self.btnLadyLee.clicked.connect(self.Lee)
-        self.btnJordan.clicked.connect(self.Jordan)
+        self.btnRadioshack.clicked.connect(self.Jordan)
 
 
     def Gallo(self):
@@ -85,11 +85,9 @@ class tienda(QDialog):
         super().__init__()
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
-        self.empresa.setText(t[0])
         self.nombreTienda = t[0]
-        font = QFont("Arial", 20)
-        font.setBold(True)  
-        self.empresa.setFont(font)  
+        pixmap = QPixmap(t[0])
+        self.empresa.setPixmap(pixmap)
         self.ventanaUrl = Anadir_URL(self,t[1])
         
         self.btnatras.clicked.connect(self.back_to_main_window)
@@ -140,12 +138,12 @@ def ejecutar():
     global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda(["GALLO MÁS GALLO","tracking_spider_GMG"])
-    thirdWin2 = tienda(["SYCOM","tracking_sycom"])
-    thirdWin3 = tienda(["JETSTEREO","tracking_spider_jetstereo"])
-    thirdWin4 = tienda(["MOTOMUNDO","N/A"])
-    thirdWin5 = tienda(["LADY LEE","N/A"])
-    thirdWin6 = tienda(["EL JORDAN","N/A"])
+    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"])
+    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"])
+    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"])
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"])
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"])
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"])
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)

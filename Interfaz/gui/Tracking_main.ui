@@ -21,7 +21,7 @@
    <string/>
   </property>
   <property name="toolTipDuration">
-   <number>-1</number>
+   <number>1</number>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
