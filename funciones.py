@@ -10,11 +10,12 @@ def guardarTracker():
 
     with open('tracking/temp.json','r',encoding='utf-8') as temp:
         anexo = json.load(temp)
+    
+    if len(anexo) != 0:
+        base.append(anexo[0])
 
-    base.append(anexo[0])
-
-    with open('tracking/articulos.json','w',encoding='utf-8') as archivoBase:
-        json.dump(base,archivoBase)
+        with open('tracking/articulos.json','w',encoding='utf-8') as archivoBase:
+            json.dump(base,archivoBase)
 
 def actualizar(obj):
     tienda = obj.nombreTienda

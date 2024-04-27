@@ -44,7 +44,7 @@ class MainWindow(QDialog):
 
     def __init__(self):
         super().__init__()
-        uic.loadUi("interfaz/gui/Tracking_main.ui", self)
+        uic.loadUi("Interfaz/gui/Tracking_main.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana 
 
         # Conectar señales a ranura
@@ -141,7 +141,7 @@ def ejecutar():
     splash = Splash()
     mainWin = MainWindow()
     thirdWin1 = tienda(["GALLO MÁS GALLO","tracking_spider_GMG"])
-    thirdWin2 = tienda(["LA COLONIA","N/A"])
+    thirdWin2 = tienda(["SYCOM","tracking_sycom"])
     thirdWin3 = tienda(["JETSTEREO","tracking_spider_jetstereo"])
     thirdWin4 = tienda(["MOTOMUNDO","N/A"])
     thirdWin5 = tienda(["LADY LEE","N/A"])
