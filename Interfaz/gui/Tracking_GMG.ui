@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>521</width>
+    <width>827</width>
     <height>441</height>
    </rect>
   </property>
@@ -98,7 +98,7 @@ background-color: rgb(30, 30, 30);</string>
              <widget class="QPushButton" name="btnatras">
               <property name="font">
                <font>
-                <pointsize>1</pointsize>
+                <pointsize>-1</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -227,7 +227,22 @@ background-color: rgb(255, 255, 255);</string>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1">
+                 <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,2,1">
+                  <property name="spacing">
+                   <number>5</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>10</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>10</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
                   <item>
                    <widget class="QLabel" name="empresa">
                     <property name="font">
@@ -279,6 +294,29 @@ padding: 7px;
                     </property>
                     <property name="flat">
                      <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="actualizar">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">	background-color: rgb(87, 114, 209);
+	border-radius: 10px;
+	Color: white;
+	padding: 10px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="imagenes/imagenes.qrc">
+                      <normaloff>:/Nuevo/act.png</normaloff>:/Nuevo/act.png</iconset>
                     </property>
                    </widget>
                   </item>

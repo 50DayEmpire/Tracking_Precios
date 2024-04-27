@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="Nuevo">
+    <file>act.png</file>
+    <file>lupa.png</file>
     <file>hucha.png</file>
     <file>Colonia.png</file>
     <file>GMG.png</file>
@@ -7,8 +9,6 @@
     <file>Jets.png</file>
     <file>Jetstereo.png</file>
     <file>jor.jpg</file>
-    <file>Jordan.png</file>
-    <file>LadyLee.jpg</file>
     <file>logcol.png</file>
     <file>Motomundo.png</file>
     <file>super.png</file>
