@@ -286,7 +286,7 @@ QPushButton:hover{
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sol, playa y tus ofertas preferidas solo en la Colonia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tienda de accesorios para computadoras en Tegucigalpa&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="toolTipDuration">
                   <number>-2</number>
@@ -416,7 +416,7 @@ QPushButton:hover{
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Compañía hondureña distribuidora de motocicletas de la más alta calidad&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Lato','sans-serif'; font-size:medium; color:#777777; background-color:#ffffff;&quot;&gt;Techno´s Design Computadoras S.A. será la mayor distribuidora de productos y servicios tecnológicos del país&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="toolTipDuration">
                   <number>-2</number>
@@ -513,7 +513,7 @@ QPushButton:hover{
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;¡Somos tus socios en proyectos!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;RadioShack Corporation es una empresa estadounidense, que gestiona una cadena de tiendas de artículos y componentes electrónicos&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="toolTipDuration">
                   <number>-2</number>
