@@ -1,16 +1,15 @@
 <RCC>
   <qresource prefix="Nuevo">
+    <file>Radioshack.png</file>
+    <file>LadyLee.png</file>
     <file>act.png</file>
     <file>lupa.png</file>
     <file>hucha.png</file>
-    <file>Colonia.png</file>
     <file>GMG.png</file>
+    <file>Sycom.png</file>
+    <file>Tecknos.png</file>
     <file>GMG2.png</file>
     <file>Jets.png</file>
     <file>Jetstereo.png</file>
-    <file>jor.jpg</file>
-    <file>logcol.png</file>
-    <file>Motomundo.png</file>
-    <file>super.png</file>
   </qresource>
 </RCC>

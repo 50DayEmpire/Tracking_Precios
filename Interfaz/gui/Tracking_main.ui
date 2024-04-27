@@ -199,7 +199,7 @@ QPushButton:hover{
               <property name="frameShadow">
                <enum>QFrame::Raised</enum>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,1">
+              <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,1">
                <property name="spacing">
                 <number>20</number>
                </property>
@@ -218,7 +218,7 @@ QPushButton:hover{
                <item>
                 <widget class="QPushButton" name="btnGallo">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -248,8 +248,7 @@ QPushButton:hover{
                   <bool>false</bool>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string/>
@@ -270,9 +269,9 @@ QPushButton:hover{
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btnColonia">
+                <widget class="QPushButton" name="btnSycom">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -300,7 +299,7 @@ QPushButton:hover{
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/logcol.png</normaloff>imagenes/logcol.png</iconset>
+                   <normaloff>imagenes/Sycom.png</normaloff>imagenes/Sycom.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -316,7 +315,7 @@ QPushButton:hover{
                <item>
                 <widget class="QPushButton" name="btnJets">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -360,7 +359,7 @@ QPushButton:hover{
               </layout>
               <zorder>btnGallo</zorder>
               <zorder>btnJets</zorder>
-              <zorder>btnColonia</zorder>
+              <zorder>btnSycom</zorder>
              </widget>
             </item>
             <item>
@@ -400,9 +399,9 @@ QPushButton:hover{
                 <number>20</number>
                </property>
                <item>
-                <widget class="QPushButton" name="btnMoto">
+                <widget class="QPushButton" name="btnTecknos">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                    <horstretch>0</horstretch>
                    <verstretch>8</verstretch>
                   </sizepolicy>
@@ -422,6 +421,9 @@ QPushButton:hover{
                  <property name="toolTipDuration">
                   <number>-2</number>
                  </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true"/>
                  </property>
@@ -430,13 +432,16 @@ QPushButton:hover{
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/Motomundo.png</normaloff>imagenes/Motomundo.png</iconset>
+                   <normaloff>imagenes/Tecknos.png</normaloff>imagenes/Tecknos.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
                    <width>215</width>
                    <height>173</height>
                   </size>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>true</bool>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
@@ -446,7 +451,7 @@ QPushButton:hover{
                <item>
                 <widget class="QPushButton" name="btnLadyLee">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -467,7 +472,7 @@ QPushButton:hover{
                   <number>-2</number>
                  </property>
                  <property name="autoFillBackground">
-                  <bool>true</bool>
+                  <bool>false</bool>
                  </property>
                  <property name="styleSheet">
                   <string notr="true"/>
@@ -491,9 +496,9 @@ QPushButton:hover{
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btnJordan">
+                <widget class="QPushButton" name="btnRadioshack">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -521,7 +526,7 @@ QPushButton:hover{
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/Jorda.png</normaloff>imagenes/Jorda.png</iconset>
+                   <normaloff>imagenes/Radioshack.png</normaloff>imagenes/Radioshack.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -535,9 +540,6 @@ QPushButton:hover{
                 </widget>
                </item>
               </layout>
-              <zorder>btnLadyLee</zorder>
-              <zorder>btnMoto</zorder>
-              <zorder>btnJordan</zorder>
              </widget>
             </item>
            </layout>

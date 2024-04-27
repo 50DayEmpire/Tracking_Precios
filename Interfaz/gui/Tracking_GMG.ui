@@ -315,8 +315,8 @@ padding: 7px;
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="imagenes/imagenes.qrc">
-                      <normaloff>:/Nuevo/act.png</normaloff>:/Nuevo/act.png</iconset>
+                     <iconset>
+                      <normaloff>imagenes/act.png</normaloff>imagenes/act.png</iconset>
                     </property>
                    </widget>
                   </item>
