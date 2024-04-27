@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>750</width>
-    <height>519</height>
+    <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,7 +89,7 @@ background-color: rgb(30, 30, 30);</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>1</pointsize>
+              <pointsize>-1</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -201,7 +201,7 @@ background-color: transparent;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,2">
+               <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2">
                 <property name="spacing">
                  <number>0</number>
                 </property>
@@ -218,13 +218,59 @@ background-color: transparent;
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="label_2">
-                  <property name="styleSheet">
-                   <string notr="true">margin-left: 10px</string>
+                 <widget class="QFrame" name="frame_7">
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ffffff;&quot;&gt;Pegue la URL de su producto:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
                   </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="4,1">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="styleSheet">
+                      <string notr="true">margin-left: 10px</string>
+                     </property>
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ffffff;&quot;&gt;Pegue la URL de su producto:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="lupa">
+                     <property name="styleSheet">
+                      <string notr="true">	background-color: rgb(87, 114, 209);
+	border-radius: 10px;
+	Color: white;
+	margin: 20px;
+	padding: 5px;
+</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="imagenes/imagenes.qrc">
+                       <normaloff>:/Nuevo/lupa.png</normaloff>:/Nuevo/lupa.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
