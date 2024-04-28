@@ -5,6 +5,7 @@ import sys
 import os
 from PyQt6.QtGui import QFont, QPixmap
 import funciones as f
+import json
 
 class Splash(QMainWindow):
     splashClosed = pyqtSignal() 
@@ -81,10 +82,11 @@ class MainWindow(QDialog):
         self.close()
 
 class tienda(QDialog):
-    def __init__(self,t):
+    def __init__(self,t,rutaImg):
         super().__init__()
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
+        self.rutaImg = rutaImg
         self.nombreTienda = t[0]
         pixmap = QPixmap(t[0])
         self.empresa.setPixmap(pixmap)
@@ -110,9 +112,10 @@ class Anadir_URL(QMainWindow):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
         self.tracker = tracker
+        pixmap = QPixmap(ventanaAnterior.rutaImg)
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
-        
+    
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
         #buscar producto
@@ -122,6 +125,9 @@ class Anadir_URL(QMainWindow):
         
     def back_to_main_window(self):
         self.ventanaAnterior.show()
+        self.textEdit.clear()
+        self.nproduct.clear()
+        f.vaciar()
         self.close()
 
     def buscar(self):
@@ -129,9 +135,19 @@ class Anadir_URL(QMainWindow):
         if url:
              # Ejecutar la búsqueda si se ingreso una url
             os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
-            self.lupa.setStyleSheet("background-color: rgb(87, 114, 209);") 
-            self.lupa.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.btnProducto.setStyleSheet("background-color: rgb(87, 114, 209); color: white;") 
+            self.btnProducto.setCursor(Qt.CursorShape.PointingHandCursor)
+
+            with open('tracking/temp.json') as file:
+                data = json.load(file)
+            nombre_producto = data[0]["nombre"] if data else ""
+            estilo = "font-size: 20px; color: white; text-align: center;"
+            self.nproduct.setStyleSheet(estilo)
+            self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.nproduct.setText(nombre_producto)
+            
             self.mostrar_ultima_imagen()
+
         else:
              # Mostrar un mensaje de advertencia si no hay texto ingresado
             QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
@@ -141,23 +157,11 @@ class Anadir_URL(QMainWindow):
         ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
         print(ruta_carpeta_imagenes)
         pixmap = QPixmap(ruta_carpeta_imagenes)
-        self.imgp.setPixmap(pixmap)
-
-        # lista_archivos = os.listdir(ruta_carpeta_imagenes)
-        # lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]
-        # if lista_imagenes:
-        #     lista_imagenes.sort(key=lambda x: os.path.getmtime(os.path.join(ruta_carpeta_imagenes, x)))
-        #     ultima_imagen = os.path.join(ruta_carpeta_imagenes, lista_imagenes[-1])
-        #     pixmap = QPixmap(ultima_imagen)
-        #     if not pixmap.isNull():
-        #         self.imgp.setPixmap(pixmap)
-        #     else:
-        #         print("Error al cargar la imagen:", ultima_imagen)
-        # else:
-        #     print("No se encontraron imágenes en la carpeta:", ruta_carpeta_imagenes)
+        pixmap_ajustada = pixmap.scaledToWidth(self.imgp.width())  # Ajustar al ancho del QLabel
+        self.imgp.setPixmap(pixmap_ajustada)
 
     def Anadir_producto(self):
-        f.guardarTracker()  
+        f.guardarTracker()
 
 def ejecutar():
     app = QApplication(sys.argv)
@@ -166,12 +170,12 @@ def ejecutar():
     global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"])
-    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"])
-    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"])
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"])
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"])
-    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"])
+    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"],"")
+    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"],"")
+    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"],"ruta/img")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"],"")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"")
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"],"")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)

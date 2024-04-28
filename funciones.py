@@ -43,7 +43,15 @@ def actualizar(obj):
 def borrar(obj):
     tienda=obj.nombreTienda
 
+    with open("tracking/articulos.json") as articulos:
+        base = json.load(articulos)
+    
+
 def archivoActual():
     with open('tracking/temp.json','r',encoding='utf-8') as temp:
         cade=json.load(temp)
     return(cade[0]['files'][0]['path'])
+
+def vaciar():
+    with open('tracking/temp.json','w',encoding='utf-8') as temp:
+        temp.write('')
