@@ -82,28 +82,24 @@ class MainWindow(QDialog):
         self.close()
 
 class tienda(QDialog):
-    def __init__(self,t):
+    def __init__(self,t,rutaImg):
         super().__init__()
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
+        self.rutaImg = rutaImg
+        self.nombreTienda = t[2]
+        self.ingresarFila()
         #DiseñoTabla        
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.tableWidget.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Interactive)
         #Scollbar
-            
-        self.nombreTienda = t[0]
         pixmap = QPixmap(t[0])
         self.empresa.setPixmap(pixmap)
-        self.ventanaUrl = Anadir_URL(self,t[1]) #Pasa la tabla a Anadir_URL
+        self.ventanaUrl = Anadir_URL(self,t[1],rutaImg)
         
         self.btnatras.clicked.connect(self.back_to_main_window)
-        self.btnactualizar.clicked.connect(self.act)
-        self.btnPlusUrl.clicked.connect(self.prueba)
-
-    def prueba(self):        
-        item = QTableWidgetItem("prueba")
-        self.tableWidget.insertRow(0)
-        self.tableWidget.setItem(0,0, item)
+        self.btnactualizar.clicked.connect(self.ingresarFila)
+        self.btnPlusUrl.clicked.connect(self.crear_URL)
 
     def act(self):
         f.actualizar(self)
@@ -116,14 +112,31 @@ class tienda(QDialog):
         self.close() 
         mainWin.show()
 
+    def ingresarFila(self):
+        productos = f.actualizar(self)
+
+        for objeto in productos:
+            self.tableWidget.insertRow(0)
+            item = QTableWidgetItem(objeto.articulo)
+            item2 = QTableWidgetItem(objeto.precio)
+            self.tableWidget.setItem(0,0,item)
+            self.tableWidget.setItem(0,1,item2)
+
 class Anadir_URL(QMainWindow):
-    def __init__(self,ventanaAnterior,tracker):
-        super().__init__()  
+    def __init__(self, ventanaAnterior, tracker, img):
+        super().__init__()
         self.ventanaAnterior = ventanaAnterior
-        self.tracker = tracker        
-        uic.loadUi("Interfaz/gui/URL.ui", self)        
+        self.tracker = tracker
+        self.img = img  # Ruta de la segunda imagen
+        pixmap = QPixmap(ventanaAnterior.rutaImg)
+        uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
-                        
+        self.btnlogo.setPixmap(pixmap)
+        # Cargar y mostrar la segunda imagen
+        pixmap_segunda = QPixmap(self.img)
+        self.btnlogo.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.btnlogo.setPixmap(pixmap_segunda)
+    
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
         #buscar producto
@@ -147,14 +160,14 @@ class Anadir_URL(QMainWindow):
             self.btnProducto.setStyleSheet("background-color: rgb(87, 114, 209); color: white;") 
             self.btnProducto.setCursor(Qt.CursorShape.PointingHandCursor)
 
-            with open('tracking/temp.json') as file:
+            with open('tracking/temp.json','r', encoding='utf-8') as file:
                 data = json.load(file)
             nombre_producto = data[0]["nombre"] if data else ""
             estilo = "font-size: 20px; color: white; text-align: center;"
             self.nproduct.setStyleSheet(estilo)
             self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
             self.nproduct.setText(nombre_producto)
-            
+
             self.mostrar_ultima_imagen()
 
         else:
@@ -164,14 +177,14 @@ class Anadir_URL(QMainWindow):
     def mostrar_ultima_imagen(self):
         # Obtener la ruta de la última imagen agregada a una carpeta
         ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
-        print(ruta_carpeta_imagenes)
         pixmap = QPixmap(ruta_carpeta_imagenes)
         pixmap_ajustada = pixmap.scaledToWidth(self.imgp.width())  # Ajustar al ancho del QLabel
         self.imgp.setPixmap(pixmap_ajustada)
 
     def Anadir_producto(self):
         f.guardarTracker()
-        
+        self.back_to_main_window()
+        self.ventanaAnterior.ingresarFila()
 
 def ejecutar():
     app = QApplication(sys.argv)
@@ -180,12 +193,12 @@ def ejecutar():
     global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"])
-    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","tracking_sycom"])
-    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"])
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"])
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"])
-    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"])
+    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG","gallo"],"Interfaz/gui/imagenes/imgp/GMG2.png")
+    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","tracking_sycom","sycom"],"Interfaz/gui/imagenes/imgp/sycim.png")
+    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo","jetstereo"],"Interfaz/gui/imagenes/imgp/Jets.png")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/diun.png","tracking_diunsa","diunsa"],"Interfaz/gui/imagenes/imgp/diu.jpg")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/ld.jpg")
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/rad.png")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)

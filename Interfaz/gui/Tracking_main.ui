@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>487</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Fermady Prices</string>
@@ -416,7 +428,7 @@ QPushButton:hover{
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Lato','sans-serif'; font-size:medium; color:#777777; background-color:#ffffff;&quot;&gt;Techno´s Design Computadoras S.A. será la mayor distribuidora de productos y servicios tecnológicos del país&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Diunsa |La tienda departamental más grande de Honduras. Compra en línea lo mejor de electrónica, electrodomésticos, tecnología, hogar, deporte y mucho más.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="toolTipDuration">
                   <number>-2</number>
@@ -432,7 +444,7 @@ QPushButton:hover{
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>imagenes/Tecknos.png</normaloff>imagenes/Tecknos.png</iconset>
+                   <normaloff>imagenes/imgp/diun.png</normaloff>imagenes/imgp/diun.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
