@@ -90,7 +90,7 @@ class tienda(QDialog):
         self.nombreTienda = t[0]
         pixmap = QPixmap(t[0])
         self.empresa.setPixmap(pixmap)
-        self.ventanaUrl = Anadir_URL(self,t[1])
+        self.ventanaUrl = Anadir_URL(self,t[1],rutaImg)
         
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.act)
@@ -108,13 +108,18 @@ class tienda(QDialog):
         mainWin.show()
 
 class Anadir_URL(QMainWindow):
-    def __init__(self,ventanaAnterior,tracker):
+    def __init__(self, ventanaAnterior, tracker, img):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
         self.tracker = tracker
+        self.img = img  # Ruta de la segunda imagen
         pixmap = QPixmap(ventanaAnterior.rutaImg)
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
+        self.btnlogo.setPixmap(pixmap)
+        # Cargar y mostrar la segunda imagen
+        pixmap_segunda = QPixmap(self.img)
+        self.btnlogo.setPixmap(pixmap_segunda)
     
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
@@ -167,12 +172,12 @@ def ejecutar():
     global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"],"")
-    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"],"")
-    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"],"ruta/img")
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"],"")
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"")
-    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"],"")
+    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"],"Interfaz/gui/imagenes/imgp/GMG2.png")
+    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"],"Interfaz/gui/imagenes/imgp/sycim.png")
+    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"],"Interfaz/gui/imagenes/imgp/Jets.png")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"],"Interfaz/gui/imagenes/imgp/tek.jpg")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"Interfaz/gui/imagenes/imgp/LadyLee.png")
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"],"Interfaz/gui/imagenes/imgp/rad.png")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)

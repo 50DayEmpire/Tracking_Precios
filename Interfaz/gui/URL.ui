@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>607</height>
+    <width>1013</width>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -134,7 +134,7 @@ background-color: transparent;
          <property name="lineWidth">
           <number>0</number>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="4">
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,4">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -150,6 +150,52 @@ background-color: transparent;
           <property name="bottomMargin">
            <number>0</number>
           </property>
+          <item>
+           <widget class="QFrame" name="frame_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QLabel" name="btnlogo">
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>600</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QFrame" name="frame_4">
             <property name="styleSheet">
