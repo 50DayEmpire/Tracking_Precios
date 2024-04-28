@@ -155,22 +155,6 @@ class Anadir_URL(QMainWindow):
         pixmap_ajustada = pixmap.scaledToWidth(self.imgp.width())  # Ajustar al ancho del QLabel
         self.imgp.setPixmap(pixmap_ajustada)
 
-
-
-
-        # lista_archivos = os.listdir(ruta_carpeta_imagenes)
-        # lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]
-        # if lista_imagenes:
-        #     lista_imagenes.sort(key=lambda x: os.path.getmtime(os.path.join(ruta_carpeta_imagenes, x)))
-        #     ultima_imagen = os.path.join(ruta_carpeta_imagenes, lista_imagenes[-1])
-        #     pixmap = QPixmap(ultima_imagen)
-        #     if not pixmap.isNull():
-        #         self.imgp.setPixmap(pixmap)
-        #     else:
-        #         print("Error al cargar la imagen:", ultima_imagen)
-        # else:
-        #     print("No se encontraron imágenes en la carpeta:", ruta_carpeta_imagenes)
-
     def Anadir_producto(self):
         f.guardarTracker()  
 
