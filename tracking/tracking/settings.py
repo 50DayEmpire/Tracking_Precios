@@ -21,7 +21,8 @@ ROBOTSTXT_OBEY = True
 
 ROBOTSTXT_USER_AGENT = "Googlebot"
 
-ITEM_PIPELINES = {"scrapy.pipelines.files.FilesPipeline": 1}
+# ITEM_PIPELINES = {"scrapy.pipelines.files.FilesPipeline": 1}
+ITEM_PIPELINES = {"tracking.pipelines.MyPipeline": 1}
 FILES_STORE = R".\imagenes"
 FILES_EXPIRES = 30
 

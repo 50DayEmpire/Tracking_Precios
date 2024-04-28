@@ -12,11 +12,11 @@ class trackingPrecios(scrapy.Spider):
 
     def parse(self, response):
         producto = Producto()
-        producto["url"] = getattr(self,"url",None)
-        producto["tienda"] = "sycom"
         producto["nombre"]=response.css("h1.product-title.product_title.entry-title::text").get()
         temp =response.css("bdi::text").getall()
         producto["precio"] = temp[1]
+        producto["url"] = getattr(self,"url",None)
+        producto["tienda"] = "sycom"
         #el campo file_urls almacena las url de las imagenes a descargar
         producto["file_urls"]=[response.css("div.woocommerce-product-gallery__image.slide.first > a::attr(href)").get()] # Sycom usa imagenes formato .png
         yield producto

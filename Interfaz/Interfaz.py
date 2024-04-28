@@ -130,7 +130,7 @@ class Anadir_URL(QMainWindow):
              # Ejecutar la búsqueda si se ingreso una url
             os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
             self.lupa.setStyleSheet("background-color: rgb(87, 114, 209);") 
-            self.lupa.setCursor(Qt.PointingHandCursor)
+            self.lupa.setCursor(Qt.CursorShape.PointingHandCursor)
             self.mostrar_ultima_imagen()
         else:
              # Mostrar un mensaje de advertencia si no hay texto ingresado
@@ -138,21 +138,23 @@ class Anadir_URL(QMainWindow):
 
     def mostrar_ultima_imagen(self):
         # Obtener la ruta de la última imagen agregada a una carpeta
-        ruta_carpeta_imagenes = "tracking/imagenes/full"
-        lista_archivos = os.listdir(ruta_carpeta_imagenes)
-        lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]
-        if lista_imagenes:
-            lista_imagenes.sort(key=lambda x: os.path.getmtime(os.path.join(ruta_carpeta_imagenes, x)))
-            ultima_imagen = os.path.join(ruta_carpeta_imagenes, lista_imagenes[-1])
-            pixmap = QPixmap(ultima_imagen)
-            if not pixmap.isNull():
-                self.imgp.setPixmap(pixmap)
-            else:
-                print("Error al cargar la imagen:", ultima_imagen)
-        else:
-            print("No se encontraron imágenes en la carpeta:", ruta_carpeta_imagenes)
+        ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
+        print(ruta_carpeta_imagenes)
+        pixmap = QPixmap(ruta_carpeta_imagenes)
+        self.imgp.setPixmap(pixmap)
 
-
+        # lista_archivos = os.listdir(ruta_carpeta_imagenes)
+        # lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]
+        # if lista_imagenes:
+        #     lista_imagenes.sort(key=lambda x: os.path.getmtime(os.path.join(ruta_carpeta_imagenes, x)))
+        #     ultima_imagen = os.path.join(ruta_carpeta_imagenes, lista_imagenes[-1])
+        #     pixmap = QPixmap(ultima_imagen)
+        #     if not pixmap.isNull():
+        #         self.imgp.setPixmap(pixmap)
+        #     else:
+        #         print("Error al cargar la imagen:", ultima_imagen)
+        # else:
+        #     print("No se encontraron imágenes en la carpeta:", ruta_carpeta_imagenes)
 
     def Anadir_producto(self):
         f.guardarTracker()  
