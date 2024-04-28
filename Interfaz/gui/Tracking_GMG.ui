@@ -146,6 +146,9 @@ background-color: rgb(30, 30, 30);</string>
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
                     </property>
+                    <property name="toolTipDuration">
+                     <number>1</number>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{
 background-color: transparent;
