@@ -5,6 +5,7 @@ import sys
 import os
 from PyQt6.QtGui import QFont, QPixmap
 import funciones as f
+import json
 
 class Splash(QMainWindow):
     splashClosed = pyqtSignal() 
@@ -112,7 +113,7 @@ class Anadir_URL(QMainWindow):
         self.tracker = tracker
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
-        
+    
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
         #buscar producto
@@ -129,9 +130,19 @@ class Anadir_URL(QMainWindow):
         if url:
              # Ejecutar la búsqueda si se ingreso una url
             os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
-            self.lupa.setStyleSheet("background-color: rgb(87, 114, 209);") 
-            self.lupa.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.btnProducto.setStyleSheet("background-color: rgb(87, 114, 209); color: white;") 
+            self.btnProducto.setCursor(Qt.CursorShape.PointingHandCursor)
+
+            with open('tracking/temp.json') as file:
+                data = json.load(file)
+            nombre_producto = data[0]["nombre"] if data else ""
+            estilo = "font-size: 20px; color: white; text-align: center;"
+            self.nproduct.setStyleSheet(estilo)
+            self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.nproduct.setText(nombre_producto)
+            
             self.mostrar_ultima_imagen()
+
         else:
              # Mostrar un mensaje de advertencia si no hay texto ingresado
             QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
@@ -141,7 +152,11 @@ class Anadir_URL(QMainWindow):
         ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
         print(ruta_carpeta_imagenes)
         pixmap = QPixmap(ruta_carpeta_imagenes)
-        self.imgp.setPixmap(pixmap)
+        pixmap_ajustada = pixmap.scaledToWidth(self.imgp.width())  # Ajustar al ancho del QLabel
+        self.imgp.setPixmap(pixmap_ajustada)
+
+
+
 
         # lista_archivos = os.listdir(ruta_carpeta_imagenes)
         # lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]

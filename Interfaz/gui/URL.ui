@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>782</width>
-    <height>528</height>
+    <width>958</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -192,7 +192,7 @@ background-color: transparent;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,7,0">
+            <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,5,1">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -271,13 +271,20 @@ background-color: transparent;
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
                      </property>
+                     <property name="toolTip">
+                      <string>Buscar Producto</string>
+                     </property>
+                     <property name="toolTipDuration">
+                      <number>-2</number>
+                     </property>
                      <property name="styleSheet">
-                      <string notr="true">	background-color: rgb(87, 114, 209);
+                      <string notr="true">QPushButton {
+	background-color: rgb(87, 114, 209);
 	border-radius: 10px;
 	Color: white;
 	margin: 20px;
 	padding: 5px;
-</string>
+}</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -296,14 +303,24 @@ background-color: transparent;
                   <property name="font">
                    <font>
                     <family>Arial</family>
-                    <bold>true</bold>
+                    <pointsize>10</pointsize>
+                    <bold>false</bold>
                    </font>
+                  </property>
+                  <property name="toolTip">
+                   <string>Pegue la URL</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>-1</number>
                   </property>
                   <property name="statusTip">
                    <string/>
                   </property>
                   <property name="whatsThis">
                    <string/>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::RightToLeft</enum>
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(255, 255, 255);
@@ -317,30 +334,68 @@ height: 25px;</string>
               </widget>
              </item>
              <item>
-              <widget class="QFrame" name="frame_8">
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(182, 182, 182);
-margin: 5px;</string>
+              <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,8">
+               <property name="spacing">
+                <number>0</number>
                </property>
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                 <widget class="QLabel" name="imgp">
-                  <property name="styleSheet">
-                   <string notr="true">margin:10px;</string>
-                  </property>
-                  <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Vista previa del producto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
+               <item>
+                <widget class="QLabel" name="nproduct">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#d5d5d5;&quot;&gt;Nombre del producto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,4,0">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>78</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="imgp">
+                   <property name="maximumSize">
+                    <size>
+                     <width>402</width>
+                     <height>292</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">margin:10px;
+background-color: rgb(184, 184, 184);</string>
+                   </property>
+                   <property name="text">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Vista previa del producto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>78</width>
+                     <height>28</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+              </layout>
              </item>
              <item>
               <widget class="QFrame" name="frame_9">
