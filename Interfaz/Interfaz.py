@@ -119,6 +119,7 @@ class Anadir_URL(QMainWindow):
         self.btnlogo.setPixmap(pixmap)
         # Cargar y mostrar la segunda imagen
         pixmap_segunda = QPixmap(self.img)
+        self.btnlogo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.btnlogo.setPixmap(pixmap_segunda)
     
         #volver
@@ -178,8 +179,8 @@ def ejecutar():
     thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"],"Interfaz/gui/imagenes/imgp/GMG2.png")
     thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"],"Interfaz/gui/imagenes/imgp/sycim.png")
     thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"],"Interfaz/gui/imagenes/imgp/Jets.png")
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"],"Interfaz/gui/imagenes/imgp/tek.jpg")
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"Interfaz/gui/imagenes/imgp/LadyLee.png")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/diun.png","N/A"],"Interfaz/gui/imagenes/imgp/diu.jpg")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"Interfaz/gui/imagenes/imgp/ld.jpg")
     thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"],"Interfaz/gui/imagenes/imgp/rad.png")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación

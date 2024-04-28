@@ -6,12 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
-    <height>653</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Añadir</string>
+   <string>Fermady</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>imagenes/hucha.png</normaloff>imagenes/hucha.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -134,7 +150,7 @@ background-color: transparent;
          <property name="lineWidth">
           <number>0</number>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,4">
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,2">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -180,14 +196,23 @@ background-color: transparent;
              <number>0</number>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QLabel" name="btnlogo">
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>600</height>
-                </size>
-               </property>
                <property name="text">
                 <string>TextLabel</string>
                </property>
@@ -349,7 +374,7 @@ height: 25px;</string>
               </widget>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,8">
+              <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,8">
                <property name="spacing">
                 <number>0</number>
                </property>
@@ -361,7 +386,7 @@ height: 25px;</string>
                 </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,4,0">
+                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,6,0">
                  <property name="spacing">
                   <number>0</number>
                  </property>
