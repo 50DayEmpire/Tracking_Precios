@@ -125,6 +125,9 @@ class Anadir_URL(QMainWindow):
         
     def back_to_main_window(self):
         self.ventanaAnterior.show()
+        self.textEdit.clear()
+        self.nproduct.clear()
+        f.vaciar()
         self.close()
 
     def buscar(self):
@@ -158,7 +161,7 @@ class Anadir_URL(QMainWindow):
         self.imgp.setPixmap(pixmap_ajustada)
 
     def Anadir_producto(self):
-        f.guardarTracker()  
+        f.guardarTracker()
 
 def ejecutar():
     app = QApplication(sys.argv)
