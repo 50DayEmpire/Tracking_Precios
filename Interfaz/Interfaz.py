@@ -82,10 +82,11 @@ class MainWindow(QDialog):
         self.close()
 
 class tienda(QDialog):
-    def __init__(self,t):
+    def __init__(self,t,rutaImg):
         super().__init__()
         uic.loadUi(("Interfaz/gui/Tracking_GMG.ui"), self)
         self.resize(800, 600)  # Tamaño de la ventana 
+        self.rutaImg = rutaImg
         self.nombreTienda = t[0]
         pixmap = QPixmap(t[0])
         self.empresa.setPixmap(pixmap)
@@ -111,6 +112,7 @@ class Anadir_URL(QMainWindow):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
         self.tracker = tracker
+        pixmap = QPixmap(ventanaAnterior.rutaImg)
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
     
@@ -165,12 +167,12 @@ def ejecutar():
     global mainWin
     splash = Splash()
     mainWin = MainWindow()
-    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"])
-    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"])
-    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"])
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"])
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"])
-    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"])
+    thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG"],"")
+    thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","N/A"],"")
+    thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo"],"ruta/img")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A"],"")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A"],"")
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A"],"")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)
