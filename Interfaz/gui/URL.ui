@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>472</height>
+    <width>782</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -89,7 +89,7 @@ background-color: rgb(30, 30, 30);</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>1</pointsize>
+              <pointsize>-1</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -192,7 +192,22 @@ background-color: transparent;
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout" stretch="2,6,0">
+            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,7,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
              <item>
               <widget class="QFrame" name="frame_6">
                <property name="frameShape">
@@ -201,7 +216,7 @@ background-color: transparent;
                <property name="frameShadow">
                 <enum>QFrame::Raised</enum>
                </property>
-               <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2">
+               <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0">
                 <property name="spacing">
                  <number>0</number>
                 </property>
@@ -268,8 +283,8 @@ background-color: transparent;
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="imagenes/imagenes.qrc">
-                       <normaloff>:/Nuevo/lupa.png</normaloff>:/Nuevo/lupa.png</iconset>
+                      <iconset>
+                       <normaloff>imagenes/lupa.png</normaloff>imagenes/lupa.png</iconset>
                      </property>
                     </widget>
                    </item>
@@ -315,12 +330,12 @@ margin: 5px;</string>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QLabel" name="imgp">
                   <property name="styleSheet">
                    <string notr="true">margin:10px;</string>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Imagen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Vista previa del producto&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -328,29 +343,41 @@ margin: 5px;</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btnProducto">
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <pointsize>16</pointsize>
-                 <bold>true</bold>
-                </font>
+              <widget class="QFrame" name="frame_9">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
                </property>
-               <property name="cursor">
-                <cursorShape>PointingHandCursor</cursorShape>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
                </property>
-               <property name="styleSheet">
-                <string notr="true">	background-color: rgb(87, 114, 209);
-	border-radius: 10px;
-	Color: white;
-	padding: 10px;
-	margin: 20px;
-
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QPushButton" name="btnProducto">
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>16</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="cursor">
+                   <cursorShape>ForbiddenCursor</cursorShape>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(147, 147, 147);
+border-radius: 10px;
+color: white;
+padding: 10px;
+margin: 20px;
+cursor: wait; 
 </string>
-               </property>
-               <property name="text">
-                <string>+ Añadir</string>
-               </property>
+                  </property>
+                  <property name="text">
+                   <string>+ Añadir</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>

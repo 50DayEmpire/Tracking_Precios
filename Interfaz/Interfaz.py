@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog
+from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
 from PyQt6 import uic
 import sys
@@ -91,9 +91,10 @@ class tienda(QDialog):
         self.ventanaUrl = Anadir_URL(self,t[1])
         
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnactualizar.clicked.connect(self.act)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
 
-    def actualizar(self):
+    def act(self):
         f.actualizar(self)
 
     def crear_URL(self):
@@ -111,25 +112,52 @@ class Anadir_URL(QMainWindow):
         self.tracker = tracker
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
+        
         #volver
         self.btnatras.clicked.connect(self.back_to_main_window)
         #buscar producto
-        #self.btnBuscar.clicked.connect(self.buscar)
+        self.lupa.clicked.connect(self.buscar)
         #Agregar un producto a la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
         
     def back_to_main_window(self):
-            self.ventanaAnterior.show()
-            self.close()
+        self.ventanaAnterior.show()
+        self.close()
 
     def buscar(self):
         url = self.textEdit.toPlainText()
-        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
+        if url:
+             # Ejecutar la búsqueda si se ingreso una url
+            os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
+            self.lupa.setStyleSheet("background-color: rgb(87, 114, 209);") 
+            self.lupa.setCursor(Qt.CursorShape.PointingHandCursor)
+            self.mostrar_ultima_imagen()
+        else:
+             # Mostrar un mensaje de advertencia si no hay texto ingresado
+            QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
+
+    def mostrar_ultima_imagen(self):
+        # Obtener la ruta de la última imagen agregada a una carpeta
+        ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
+        print(ruta_carpeta_imagenes)
+        pixmap = QPixmap(ruta_carpeta_imagenes)
+        self.imgp.setPixmap(pixmap)
+
+        # lista_archivos = os.listdir(ruta_carpeta_imagenes)
+        # lista_imagenes = [archivo for archivo in lista_archivos if archivo.endswith(('.png', '.jpg', '.jpeg'))]
+        # if lista_imagenes:
+        #     lista_imagenes.sort(key=lambda x: os.path.getmtime(os.path.join(ruta_carpeta_imagenes, x)))
+        #     ultima_imagen = os.path.join(ruta_carpeta_imagenes, lista_imagenes[-1])
+        #     pixmap = QPixmap(ultima_imagen)
+        #     if not pixmap.isNull():
+        #         self.imgp.setPixmap(pixmap)
+        #     else:
+        #         print("Error al cargar la imagen:", ultima_imagen)
+        # else:
+        #     print("No se encontraron imágenes en la carpeta:", ruta_carpeta_imagenes)
 
     def Anadir_producto(self):
-        url = self.textEdit.toPlainText() #eliminar
-        os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url) #eliminar
-        f.guardarTracker()
+        f.guardarTracker()  
 
 def ejecutar():
     app = QApplication(sys.argv)
