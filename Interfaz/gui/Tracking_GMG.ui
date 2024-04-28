@@ -286,7 +286,7 @@ background-color: transparent;
                       </property>
                       <property name="styleSheet">
                        <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(8, 3, 245);
+background-color:rgb(87, 114, 209);
 margin: 10px;
 border-radius: 10px;
 padding: 7px;
@@ -364,6 +364,9 @@ padding: 7px;
                   </item>
                   <item>
                    <widget class="QFrame" name="frame_6">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 255);</string>
+                    </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -386,19 +389,19 @@ padding: 7px;
                         <string notr="true">QScrollBar:vertical {
                 border: none;
                 background: white;
-                width: 15px;
+                width: 20px;
                 margin: 15px 0 15px 0;
                 border-radius: 0px;
             }
             QScrollBar::handle:vertical {   
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                stop: 0 rgb(32, 47, 130), stop: 0.5 rgb(32, 47, 130), stop:1 rgb(32, 47, 130));
-                min-height: 30px;
-                border-radius: 7px;
+                stop: 0 rgb(87, 114, 209), stop: 0.5 rgb(87, 114, 209), stop:1 rgb(87, 114, 209));
+                min-height: 40px;
+                border-radius: 10px;
             }
             QScrollBar::handle:vertical:hover{    
                 background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-                stop: 0 rgb(80, 80, 80), stop: 0.5 rgb(80, 80, 80), stop:1 rgb(80, 80, 80));
+                stop: 0 rgb(200, 200, 200), stop: 0.5 rgb(200, 200, 200), stop:1 rgb(200, 200, 200));
             }
             QScrollBar::add-line:vertical {
                 border: none;

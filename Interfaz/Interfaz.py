@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView
+from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
 from PyQt6 import uic
 import sys
@@ -98,7 +98,12 @@ class tienda(QDialog):
         
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.act)
-        self.btnPlusUrl.clicked.connect(self.crear_URL)
+        self.btnPlusUrl.clicked.connect(self.prueba)
+
+    def prueba(self):        
+        item = QTableWidgetItem("prueba")
+        self.tableWidget.insertRow(0)
+        self.tableWidget.setItem(0,0, item)
 
     def act(self):
         f.actualizar(self)
@@ -125,6 +130,7 @@ class Anadir_URL(QMainWindow):
         self.lupa.clicked.connect(self.buscar)
         #Agregar un producto a la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
+
         
     def back_to_main_window(self):
         self.ventanaAnterior.show()
