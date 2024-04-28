@@ -190,7 +190,7 @@ def ejecutar():
     thirdWin1 = tienda(["interfaz/gui/imagenes/imgp/GMG.png","tracking_spider_GMG","gallo"],"Interfaz/gui/imagenes/imgp/GMG2.png")
     thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","tracking_sycom","sycom"],"Interfaz/gui/imagenes/imgp/sycom.png")
     thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo","jetstereo"],"Interfaz/gui/imagenes/imgp/Jets.png")
-    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/tek.jpg")
+    thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/Tecknos.png","tracking_diunsa","diunsa"],"Interfaz/gui/imagenes/imgp/tek.jpg")
     thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/LadyLee.png")
     thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/rad.png")
 

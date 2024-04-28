@@ -26,7 +26,6 @@ def actualizar(obj):
     tienda = obj.nombreTienda
     articulos = []
     productos=[]
-    print("si ejecuta")
 
     with open('tracking/articulos.json','r',encoding='utf-8') as archivoBase:
         if path.getsize('tracking/articulos.json') == 0:

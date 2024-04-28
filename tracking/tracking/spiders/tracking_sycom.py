@@ -3,7 +3,7 @@ from tracking.items import Producto
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_sycom"
-    #allowed_domains=["sycomhn.com"]
+    allowed_domains=["sycomhn.com"]
 
     def start_requests(self):
         #para definir la URL del spider ejecutar con el atributo -a url=<url deseada>
