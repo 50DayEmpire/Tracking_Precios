@@ -15,7 +15,7 @@ class trackingPrecios(scrapy.Spider):
         producto["nombre"]=response.css("span.base::text").get()
         producto["precio"]=response.css("span.price::text").get()
         producto["url"] = getattr(self,"url",None)
-        producto["tienda"] = "GALLO MÁS GALLO"
+        producto["tienda"] = "gallo"
         #el campo file_urls almacena las url de las imagenes a descargar
         producto["file_urls"]=[response.css("img.gallery-placeholder__image::attr(src)").get()] # GMG usa imagenes formato .jpg
         yield producto

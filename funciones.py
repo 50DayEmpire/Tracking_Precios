@@ -4,7 +4,7 @@ from os import path
 class Producto:
     def __init__(self,articulo,precio):
         self.articulo = articulo
-        self,precio = precio
+        self.precio = precio
 
 def guardarTracker():
     if path.getsize('tracking/articulos.json') > 0:
@@ -26,19 +26,20 @@ def actualizar(obj):
     tienda = obj.nombreTienda
     articulos = []
     productos=[]
-    n=0
+    print("si ejecuta")
 
     with open('tracking/articulos.json','r',encoding='utf-8') as archivoBase:
         if path.getsize('tracking/articulos.json') == 0:
             return
         base = json.load(archivoBase)
-        for i in base:
-            if i['tienda'] == tienda:
-                articulos.append(i)
+
+    for i in base:
+        if i['tienda'] == tienda:
+            articulos.append(i)
+
     for i in articulos:
-        productos[n] = Producto(i[0],i[1])
-        n+=1
-    print(productos)
+        productos.append(Producto(i['nombre'],i['precio'])) 
+    return productos
 
 def borrar(obj):
     tienda=obj.nombreTienda

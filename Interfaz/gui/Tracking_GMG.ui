@@ -127,12 +127,15 @@ background-color: rgb(30, 30, 30);</string>
                    <widget class="QPushButton" name="btnatras">
                     <property name="font">
                      <font>
-                      <pointsize>1</pointsize>
+                      <pointsize>-1</pointsize>
                       <bold>true</bold>
                      </font>
                     </property>
                     <property name="cursor">
                      <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>1</number>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{
