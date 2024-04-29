@@ -12,11 +12,15 @@ def guardarTracker():
             base = json.load(archivoBase)
     else:
         base = []
-
+    if path.getsize('tracking/temp.json') == 0:
+        return
     with open('tracking/temp.json','r',encoding='utf-8') as temp:
         anexo = json.load(temp)
     
-    if len(anexo) != 0:
+    if len(anexo) == 0:
+        return
+    
+    if filtrarDuplicados(anexo):
         base.append(anexo[0])
 
         with open('tracking/articulos.json','w',encoding='utf-8') as archivoBase:
@@ -40,11 +44,24 @@ def actualizar(obj):
         productos.append(Producto(i['nombre'],i['precio'])) 
     return productos
 
-def borrar(obj):
+def borrar(obj,lista):
+    #Pendiente de ejecutar y corregir
     tienda=obj.nombreTienda
+    nuevaBase=[]
 
-    with open("tracking/articulos.json") as articulos:
+    with open("tracking/articulos.json","r",encoding='utf-8') as articulos:
         base = json.load(articulos)
+
+    for articulo in base:
+        if articulo['tienda'] == tienda and articulo['nombre'] in lista:
+            continue
+        nuevaBase.append(articulo)
+
+    with open("tracking/articulos.json","w",encoding='utf-8') as escritura:
+        json.dump(nuevaBase,escritura)
+            
+
+
     
 
 def archivoActual():
@@ -55,3 +72,10 @@ def archivoActual():
 def vaciar():
     with open('tracking/temp.json','w',encoding='utf-8') as temp:
         temp.write('')
+
+def filtrarDuplicados(anexo):
+    with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
+        base = json.load(archivo)
+    if anexo[0] in base:
+        return False
+    return True

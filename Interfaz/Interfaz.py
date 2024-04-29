@@ -100,19 +100,33 @@ class tienda(QDialog):
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
+        self.btnEliminar_2.clicked.connect(self.eliminarFilas)
+        """
+        Agregar un llamado al metodo self.ventanaHistorial() al hacer doble clic en una celda de la tabla 
+        para mostrar la ventana historial
+        """
 
     def act(self):
         f.actualizar(self)
 
+    def eliminarFilas(self):
+        lista=[]
+        # <=====  Aqui debe ir el codigo para eliminar filas
+        f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
+
+    def vaciar(self):
+        x="" #<===== Aqui tiene que ir el metodo para vaciar toda la tabla de la tienda
+
     def crear_URL(self):
         self.ventanaUrl.show()
         self.hide()
-        
+
     def back_to_main_window(self):
         self.close() 
         mainWin.show()
 
     def ingresarFila(self):
+        self.vaciar()
         productos = f.actualizar(self)
 
         for objeto in productos:
@@ -121,6 +135,11 @@ class tienda(QDialog):
             item2 = QTableWidgetItem(objeto.precio)
             self.tableWidget.setItem(0,0,item)
             self.tableWidget.setItem(0,1,item2)
+
+    def ventanaHistorial(self):
+        self.historial = Historial()
+        self.historial.show()
+        self.hide()
 
 class Anadir_URL(QMainWindow):
     def __init__(self, ventanaAnterior, tracker, img):
@@ -146,7 +165,6 @@ class Anadir_URL(QMainWindow):
         
         self.url = self.textEdit.toPlainText()
 
-
     #Si se modifico el textEdit y quiero regresar me va preguntar si de verdad quiero cancelar
     def back_or_confirm(self):
         if self.textEdit.toPlainText() != self.url:
@@ -167,9 +185,6 @@ class Anadir_URL(QMainWindow):
         self.imgp.setStyleSheet("background-color: rgb(184, 184, 184);")
         f.vaciar()
         self.close()
-
-
-
 
     def buscar(self):
         url = self.textEdit.toPlainText()
@@ -209,13 +224,19 @@ class Anadir_URL(QMainWindow):
         self.imgp.setAlignment(Qt.AlignmentFlag.AlignCenter)
     
     def Anadir_producto(self):
-        if self.textEdit.toPlainText():
+        if self.textEdit.toPlainText():  #<======= Corregir, que dependa del clic en el boton buscar, no de si hay texto en la caja de texo
                 f.guardarTracker()
                 self.back_to_main_window()
                 self.ventanaAnterior.ingresarFila()
         else:
            
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
+
+class Historial(QDialog):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi(("Interfaz/gui/historial.ui"), self)
+        self.resize(800, 600)
 
 def ejecutar():
     app = QApplication(sys.argv)
