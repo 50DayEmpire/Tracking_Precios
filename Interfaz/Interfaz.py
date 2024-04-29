@@ -138,53 +138,84 @@ class Anadir_URL(QMainWindow):
         self.btnlogo.setPixmap(pixmap_segunda)
     
         #volver
-        self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnatras.clicked.connect(self.back_or_confirm)
         #buscar producto
         self.lupa.clicked.connect(self.buscar)
         #Agregar un producto a la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
-
         
+        self.url = self.textEdit.toPlainText()
+
+
+    #Si se modifico el textEdit y quiero regresar me va preguntar si de verdad quiero cancelar
+    def back_or_confirm(self):
+        if self.textEdit.toPlainText() != self.url:
+            reply = QMessageBox.question(self, "Confirmación", "¿Estás seguro de que quieres cancelar? Los cambios no se guardarán.",
+                                        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+            if reply == QMessageBox.StandardButton.No:
+                return
+        self.back_to_main_window()
+    
     def back_to_main_window(self):
+
         self.ventanaAnterior.show()
         self.textEdit.clear()
         self.nproduct.clear()
+        self.imgp.clear()
+        self.imgp.setText("Vista previa del producto")
+        self.imgp.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.imgp.setStyleSheet("background-color: rgb(184, 184, 184);")
         f.vaciar()
         self.close()
+
+
+
 
     def buscar(self):
         url = self.textEdit.toPlainText()
         if url:
-             # Ejecutar la búsqueda si se ingreso una url
+            self.btnProducto.setEnabled(True)
+            # Ejecutar la búsqueda si se ingreso una url
             os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
-            self.btnProducto.setStyleSheet("background-color: rgb(87, 114, 209); color: white;") 
-            self.btnProducto.setCursor(Qt.CursorShape.PointingHandCursor)
 
             with open('tracking/temp.json','r', encoding='utf-8') as file:
                 data = json.load(file)
             nombre_producto = data[0]["nombre"] if data else ""
-            estilo = "font-size: 20px; color: white; text-align: center;"
+
+            #Calcula el tamaño de fuente relativo al tamaño del QLabel, teniendo en cuenta el tamaño máximo
+            font_size = min(self.nproduct.height() // 2, self.nproduct.width() // len(nombre_producto))  
+            font_size = max(14, font_size)
+
+            estilo = f"font-size: {font_size}px; color: white; text-align: center;"
             self.nproduct.setStyleSheet(estilo)
             self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
             self.nproduct.setText(nombre_producto)
 
             self.mostrar_ultima_imagen()
-
+            return True
         else:
-             # Mostrar un mensaje de advertencia si no hay texto ingresado
+            # Mostrar un mensaje de advertencia si no hay texto ingresado
             QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
-
+            return False
+        
     def mostrar_ultima_imagen(self):
         # Obtener la ruta de la última imagen agregada a una carpeta
+        self.imgp.setStyleSheet("background-color: transparent;")
         ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
         pixmap = QPixmap(ruta_carpeta_imagenes)
-        pixmap_ajustada = pixmap.scaledToWidth(self.imgp.width())  # Ajustar al ancho del QLabel
+        pixmap_ajustada = pixmap.scaled(self.imgp.size(), Qt.AspectRatioMode.KeepAspectRatio)
         self.imgp.setPixmap(pixmap_ajustada)
-
+        self.imgp.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    
     def Anadir_producto(self):
-        f.guardarTracker()
-        self.back_to_main_window()
-        self.ventanaAnterior.ingresarFila()
+        if self.textEdit.toPlainText():
+                f.guardarTracker()
+                self.back_to_main_window()
+                self.ventanaAnterior.ingresarFila()
+        else:
+           
+            QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
 def ejecutar():
     app = QApplication(sys.argv)

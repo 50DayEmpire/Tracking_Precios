@@ -324,6 +324,10 @@ background-color: transparent;
 	Color: white;
 	margin: 20px;
 	padding: 5px;
+}
+
+QPushButton:hover {
+ 		background-color: rgb(170, 169, 167);
 }</string>
                      </property>
                      <property name="text">
@@ -340,6 +344,12 @@ background-color: transparent;
                 </item>
                 <item>
                  <widget class="QTextEdit" name="textEdit">
+                  <property name="maximumSize">
+                   <size>
+                    <width>527</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Arial</family>
@@ -376,17 +386,23 @@ height: 25px;</string>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,8">
                <property name="spacing">
-                <number>0</number>
+                <number>14</number>
                </property>
                <item>
                 <widget class="QLabel" name="nproduct">
+                 <property name="maximumSize">
+                  <size>
+                   <width>527</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#d5d5d5;&quot;&gt;Nombre del producto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,6,0">
+                <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,4,0">
                  <property name="spacing">
                   <number>0</number>
                  </property>
@@ -446,31 +462,90 @@ background-color: rgb(184, 184, 184);</string>
                 <enum>QFrame::Raised</enum>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
                 <item>
-                 <widget class="QPushButton" name="btnProducto">
-                  <property name="font">
-                   <font>
-                    <family>Arial</family>
-                    <pointsize>16</pointsize>
-                    <bold>true</bold>
-                   </font>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,2,1">
+                  <property name="spacing">
+                   <number>0</number>
                   </property>
-                  <property name="cursor">
-                   <cursorShape>ForbiddenCursor</cursorShape>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(147, 147, 147);
-border-radius: 10px;
-color: white;
-padding: 10px;
-margin: 20px;
-cursor: wait; 
-</string>
-                  </property>
-                  <property name="text">
-                   <string>+ Añadir</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>68</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btnProducto">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>16</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Añadir producto</string>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+    background-color: rgb(87, 114, 209);
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    margin: 20px;
+    cursor: wait; 
+}
+
+QPushButton:hover {
+    background-color: rgb(170, 169, 167);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>+ Añadir</string>
+                    </property>
+                    <property name="autoDefault">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>58</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </widget>

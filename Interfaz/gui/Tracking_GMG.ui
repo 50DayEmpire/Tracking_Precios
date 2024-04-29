@@ -299,12 +299,23 @@ background-color: transparent;
                       <property name="cursor">
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
+                      <property name="toolTip">
+                       <string>Añadir un nuevo producto</string>
+                      </property>
                       <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);
-background-color:rgb(87, 114, 209);
-margin: 10px;
-border-radius: 10px;
-padding: 7px;
+                       <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(87, 114, 209);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 7px;
+    border: none; /* Para eliminar el borde predeterminado */
+}
+QPushButton:hover {
+ 		
+	background-color: rgb(80, 46, 139);
+}
+
 </string>
                       </property>
                       <property name="text">
@@ -327,13 +338,21 @@ padding: 7px;
                       <property name="cursor">
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
+                      <property name="toolTip">
+                       <string>Actualizar tabla</string>
+                      </property>
                       <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(136, 136, 136);
-margin: 10px;
-border-radius: 10px;
-padding: 7px;
-</string>
+                       <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(136, 136, 136);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 7px;
+    border: none; /* Para eliminar el borde predeterminado */
+}
+QPushButton:hover {
+ 		background-color: rgb(170, 169, 167);
+}</string>
                       </property>
                       <property name="text">
                        <string/>
@@ -359,13 +378,23 @@ padding: 7px;
                       <property name="cursor">
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
+                      <property name="toolTip">
+                       <string>Eliminar un producto</string>
+                      </property>
                       <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(226, 0, 0);
-margin: 10px;
-border-radius: 10px;
-padding: 7px;
-</string>
+                       <string notr="true">QPushButton {
+    color: rgb(255, 255, 255);
+    background-color: rgb(226, 0, 0);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 7px;
+    border: none; /* Para eliminar el borde predeterminado */
+}
+
+QPushButton:hover {
+ 	
+	background-color: rgb(177, 30, 0);
+}</string>
                       </property>
                       <property name="text">
                        <string>-Eliminar</string>
@@ -469,7 +498,7 @@ padding: 7px;
                        </column>
                        <column>
                         <property name="text">
-                         <string> </string>
+                         <string/>
                         </property>
                        </column>
                       </widget>
