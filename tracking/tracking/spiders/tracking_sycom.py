@@ -7,8 +7,9 @@ class trackingPrecios(scrapy.Spider):
 
     def start_requests(self):
         #para definir la URL del spider ejecutar con el atributo -a url=<url deseada>
-        url = getattr(self, "url", None)
-        yield scrapy.Request(url, self.parse)
+        listaUrl = getattr(self, "url", None).split(",")
+        for url in listaUrl:
+            yield scrapy.Request(url, self.parse)
 
     def parse(self, response):
         producto = Producto()

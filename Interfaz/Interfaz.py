@@ -4,6 +4,7 @@ from PyQt6 import uic
 import sys
 import os
 from PyQt6.QtGui import QFont, QPixmap
+from os import path
 import funciones as f
 import json
 
@@ -15,13 +16,15 @@ class Splash(QMainWindow):
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)  # Elimina el marco de la ventana
         uic.loadUi("interfaz/gui/inicio.ui", self)
+        self.updateGeneral()
+        self.close_splash()
 
-        self.show_timer = QTimer(self)
-        self.show_timer.timeout.connect(self.close_splash)
-        self.show_timer.start(3000)
+        # self.show_timer = QTimer(self)
+        # self.show_timer.timeout.connect(self.close_splash)
+        # self.show_timer.start(3000)
 
     def close_splash(self):
-        self.show_timer.stop()
+        #self.show_timer.stop()
         self.fade_animation = QPropertyAnimation(self, b"windowOpacity")
         self.fade_animation.setDuration(1000)
         self.fade_animation.setStartValue(1.0)
@@ -31,7 +34,12 @@ class Splash(QMainWindow):
 
     def emit_splash_closed(self):
         self.close()
-        self.splashClosed.emit()  
+        self.splashClosed.emit()
+
+    def updateGeneral(self):
+        f.actGeneral()
+        
+
 
 class MainWindow(QDialog):
     GalloClicked = pyqtSignal()  
@@ -193,9 +201,10 @@ class Anadir_URL(QMainWindow):
             # Ejecutar la búsqueda si se ingreso una url
             os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
 
-            with open('tracking/temp.json','r', encoding='utf-8') as file:
-                data = json.load(file)
-            nombre_producto = data[0]["nombre"] if data else ""
+            if path.getsize('tracking/temp.json') > 0:
+                with open('tracking/temp.json','r', encoding='utf-8') as file:
+                    data = json.load(file)
+                nombre_producto = data[0]["nombre"] if data else ""
 
             #Calcula el tamaño de fuente relativo al tamaño del QLabel, teniendo en cuenta el tamaño máximo
             font_size = min(self.nproduct.height() // 2, self.nproduct.width() // len(nombre_producto))  
@@ -232,7 +241,7 @@ class Anadir_URL(QMainWindow):
            
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
-class Historial(QDialog):
+class Historial(QDialog): #<=====Trabajar en la clase Historial
     def __init__(self):
         super().__init__()
         uic.loadUi(("Interfaz/gui/historial.ui"), self)
@@ -249,8 +258,8 @@ def ejecutar():
     thirdWin2 = tienda(["interfaz/gui/imagenes/imgp/sycom.png","tracking_sycom","sycom"],"Interfaz/gui/imagenes/imgp/sycim.png")
     thirdWin3 = tienda(["interfaz/gui/imagenes/imgp/Jetstereo.png","tracking_spider_jetstereo","jetstereo"],"Interfaz/gui/imagenes/imgp/Jets.png")
     thirdWin4 = tienda(["interfaz/gui/imagenes/imgp/diun.png","tracking_diunsa","diunsa"],"Interfaz/gui/imagenes/imgp/diu.jpg")
-    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/ld.jpg")
-    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","N/A","N/A"],"Interfaz/gui/imagenes/imgp/rad.png")
+    thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","tracking_ladylee","ladylee"],"Interfaz/gui/imagenes/imgp/ld.jpg")
+    thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","tracking_radioshack","radioshack"],"Interfaz/gui/imagenes/imgp/rad.png")
 
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)

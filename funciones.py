@@ -1,5 +1,5 @@
 import json
-from os import path
+from os import path, system
 
 class Producto:
     def __init__(self,articulo,precio):
@@ -59,10 +59,6 @@ def borrar(obj,lista):
 
     with open("tracking/articulos.json","w",encoding='utf-8') as escritura:
         json.dump(nuevaBase,escritura)
-            
-
-
-    
 
 def archivoActual():
     with open('tracking/temp.json','r',encoding='utf-8') as temp:
@@ -79,3 +75,9 @@ def filtrarDuplicados(anexo):
     if anexo[0] in base:
         return False
     return True
+
+def actGeneral():
+    # with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
+    #     base = json.load(archivo)
+    return
+    # system("cd "+ path.dirname(path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)

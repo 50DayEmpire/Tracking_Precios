@@ -14,9 +14,10 @@ from pathlib import Path
 class MyPipeline(FilesPipeline):
     def file_path(self, request, response=None, info=None, *, item=None):
         media_guid = hashlib.sha1(to_bytes(request.url)).hexdigest()
-        if item["tienda"] == "gallo":
+        if item["tienda"] == "gallo" or item['tienda'] == "radioshack":
             media_ext = ".jpg"
-        elif item["tienda"] == "diunsa":
+            print("Paso 5")
+        elif item["tienda"] == "diunsa" or item['tienda'] == "ladylee":
             media_ext = ".webp"
         else:
             media_ext = Path(request.url).suffix
