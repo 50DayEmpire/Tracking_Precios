@@ -105,7 +105,7 @@ background-color: rgb(30, 30, 30);</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>-1</pointsize>
+              <pointsize>1</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -361,7 +361,7 @@ QPushButton:hover {
                    <string>Pegue la URL</string>
                   </property>
                   <property name="toolTipDuration">
-                   <number>-1</number>
+                   <number>1</number>
                   </property>
                   <property name="statusTip">
                    <string/>

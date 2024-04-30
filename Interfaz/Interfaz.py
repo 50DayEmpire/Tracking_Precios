@@ -2,11 +2,13 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHe
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
 from PyQt6 import uic
 import sys
-import os
-from PyQt6.QtGui import QFont, QPixmap
+from PyQt6.QtGui import QPixmap
 from os import path
 import funciones as f
 import json
+from os.path import abspath, dirname, join, getsize
+import subprocess
+import re 
 
 class Splash(QMainWindow):
     splashClosed = pyqtSignal() 
@@ -159,31 +161,30 @@ class Anadir_URL(QMainWindow):
         uic.loadUi("interfaz/gui/URL.ui", self)
         self.resize(800, 600)  # Tamaño de la ventana
         self.btnlogo.setPixmap(pixmap)
-        # Cargar y mostrar la segunda imagen
-        pixmap_segunda = QPixmap(self.img)
-        self.btnlogo.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.btnlogo.setPixmap(pixmap_segunda)
-    
         #volver
         self.btnatras.clicked.connect(self.back_or_confirm)
         #buscar producto
         self.lupa.clicked.connect(self.buscar)
-        #Agregar un producto a la lista de tracking
+        #Añadir producto en la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
-        
-        self.url = self.textEdit.toPlainText()
+        self.url = ""  # Inicializar la URL vacía
 
-    #Si se modifico el textEdit y quiero regresar me va preguntar si de verdad quiero cancelar
+    #Funcion que verifica si la cadena ingresada tiene formato de una URL, utilizando el modulo re
+    def es_url_valida(self, url):
+        patron = re.compile(r'^https?://(?:www\.)?\w+\.\w+')
+        return bool(patron.match(url))
+
+    #solo preguntara esto si se realizo una busqueda
     def back_or_confirm(self):
-        if self.textEdit.toPlainText() != self.url:
+        if self.url:
             reply = QMessageBox.question(self, "Confirmación", "¿Estás seguro de que quieres cancelar? Los cambios no se guardarán.",
                                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             if reply == QMessageBox.StandardButton.No:
                 return
-        self.back_to_main_window()
-    
-    def back_to_main_window(self):
 
+        self.back_to_main_window()
+
+    def back_to_main_window(self):
         self.ventanaAnterior.show()
         self.textEdit.clear()
         self.nproduct.clear()
@@ -194,52 +195,52 @@ class Anadir_URL(QMainWindow):
         f.vaciar()
         self.close()
 
+    #Si el texEdit esta vacio dice que ingrese una url. si no infgresa url valida dice que no es valida 
     def buscar(self):
         url = self.textEdit.toPlainText()
-        if url:
-            self.btnProducto.setEnabled(True)
-            # Ejecutar la búsqueda si se ingreso una url
-            os.system("cd "+ os.path.dirname(os.path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
+        if not url:
+            QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
+            return False
 
-            if path.getsize('tracking/temp.json') > 0:
+        if self.es_url_valida(url):
+            self.btnProducto.setEnabled(True)
+            subprocess.run(["scrapy", "crawl", self.tracker, "-O", "temp.json", "-a", "url="+url], cwd=join(dirname(abspath(__file__)), "../tracking"))
+
+            if getsize('tracking/temp.json') > 0:
                 with open('tracking/temp.json','r', encoding='utf-8') as file:
                     data = json.load(file)
                 nombre_producto = data[0]["nombre"] if data else ""
 
-            #Calcula el tamaño de fuente relativo al tamaño del QLabel, teniendo en cuenta el tamaño máximo
-            font_size = min(self.nproduct.height() // 2, self.nproduct.width() // len(nombre_producto))  
-            font_size = max(14, font_size)
+                font_size = min(self.nproduct.height() // 2, self.nproduct.width() // len(nombre_producto))  
+                font_size = max(14, font_size)
+                estilo = f"font-size: {font_size}px; color: white; text-align: center;"
+                self.nproduct.setStyleSheet(estilo)
+                self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                self.nproduct.setText(nombre_producto)
 
-            estilo = f"font-size: {font_size}px; color: white; text-align: center;"
-            self.nproduct.setStyleSheet(estilo)
-            self.nproduct.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-            self.nproduct.setText(nombre_producto)
-
-            self.mostrar_ultima_imagen()
+                self.mostrar_ultima_imagen()
+                self.url = url  # Actualizar la URL actual
             return True
         else:
-            # Mostrar un mensaje de advertencia si no hay texto ingresado
-            QMessageBox.warning(self, "Advertencia", "Por favor, ingrese una URL antes de hacer clic en el botón de búsqueda.")
+            QMessageBox.warning(self, "Advertencia", "La URL ingresada no es válida. Por favor, ingrese una URL válida.")
             return False
-        
+
     def mostrar_ultima_imagen(self):
-        # Obtener la ruta de la última imagen agregada a una carpeta
-        self.imgp.setStyleSheet("background-color: transparent;")
         ruta_carpeta_imagenes = "tracking/imagenes/" + f.archivoActual()
-        pixmap = QPixmap(ruta_carpeta_imagenes)
-        pixmap_ajustada = pixmap.scaled(self.imgp.size(), Qt.AspectRatioMode.KeepAspectRatio)
-        self.imgp.setPixmap(pixmap_ajustada)
-        self.imgp.setAlignment(Qt.AlignmentFlag.AlignCenter)
-    
+        self.imgp.setStyleSheet("background-color: transparent;")
+        if path.exists(ruta_carpeta_imagenes):
+            pixmap = QPixmap(ruta_carpeta_imagenes)
+            pixmap_ajustada = pixmap.scaled(self.imgp.size(), Qt.AspectRatioMode.KeepAspectRatio)
+            self.imgp.setPixmap(pixmap_ajustada)
+            self.imgp.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
     def Anadir_producto(self):
-        if self.textEdit.toPlainText():  #<======= Corregir, que dependa del clic en el boton buscar, no de si hay texto en la caja de texo
-                f.guardarTracker()
-                self.back_to_main_window()
-                self.ventanaAnterior.ingresarFila()
+        if self.url:
+            f.guardarTracker()
+            self.back_to_main_window()
+            self.ventanaAnterior.ingresarFila()
         else:
-           
-            QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
+            QMessageBox.warning(self, "Advertencia", "Por favor, realice la búsqueda de su producto antes de agregarlo.")
 
 class Historial(QDialog): #<=====Trabajar en la clase Historial
     def __init__(self):

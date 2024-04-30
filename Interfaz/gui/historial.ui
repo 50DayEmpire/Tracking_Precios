@@ -104,7 +104,7 @@
            <widget class="QPushButton" name="btnatras">
             <property name="font">
              <font>
-              <pointsize>-1</pointsize>
+              <pointsize>1</pointsize>
               <bold>true</bold>
              </font>
             </property>
