@@ -77,7 +77,13 @@ def filtrarDuplicados(anexo):
     return True
 
 def actGeneral():
-    # with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
-    #     base = json.load(archivo)
-    return
-    # system("cd "+ path.dirname(path.abspath(__file__)) + "/../tracking && scrapy crawl " + self.tracker + " -O temp.json -a url="+url)
+    urls = ""
+    if path.getsize('tracking/articulos.json') == 0:
+        return
+    with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
+        base = json.load(archivo)
+    for articulo in base:
+        urls += articulo['url']+","
+    urls = urls[0:-1]
+    print(path.dirname(path.abspath(__file__))) #<====== Revisar
+    system("cd "+ path.dirname(path.abspath(__file__)) + "/../tracking && scrapy crawl tracking_general -O temp.json -a url="+urls)

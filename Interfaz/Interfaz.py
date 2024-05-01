@@ -11,14 +11,16 @@ import subprocess
 import re 
 
 class Splash(QMainWindow):
-    splashClosed = pyqtSignal() 
+    splashClosed = pyqtSignal()
 
     def __init__(self):
         super().__init__()
+        actualizacionGeneralEncendida=False
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)  # Elimina el marco de la ventana
         uic.loadUi("interfaz/gui/inicio.ui", self)
-        self.updateGeneral()
+        if actualizacionGeneralEncendida:
+            self.updateGeneral()
         self.close_splash()
 
         # self.show_timer = QTimer(self)
