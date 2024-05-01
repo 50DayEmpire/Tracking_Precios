@@ -10,7 +10,7 @@ from os.path import abspath, dirname, join, getsize
 import subprocess
 import re 
 
-class mitableWidget(QTableWidgetItem):
+class miTableWidgetItem(QTableWidgetItem):
     def __init__(self,objeto):
         super().__init__()
         self.objetoOculto = objeto
@@ -20,7 +20,7 @@ class Splash(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        actualizacionGeneralEncendida=True
+        actualizacionGeneralEncendida=False
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)  # Elimina el marco de la ventana
         uic.loadUi("interfaz/gui/inicio.ui", self)
@@ -162,18 +162,15 @@ class tienda(QDialog):
             self.tableWidget.insertRow(0)
             item = QTableWidgetItem(objeto.articulo)
             item2 = QTableWidgetItem(objeto.precio)
-            item3 = QTableWidgetItem(objeto)
+            item3 = miTableWidgetItem(objeto)
             self.tableWidget.setItem(0,0,item)
             self.tableWidget.setItem(0,1,item2)
             self.tableWidget.setItem(0,2,item3)
-            
-        objeto1 = self.tableWidget.item(0,2)
-        
-        print(objeto1)
 
     def ventanaHistorial(self, row, column):
         print(f"Doble click en la celda ({row},{column})")
-        self.historial = Historial(self)
+        objeto = self.tableWidget.item(row,2)
+        self.historial = Historial(self,objeto.objetoOculto)
         self.historial.show()
         self.hide()
 
@@ -312,18 +309,20 @@ class Anadir_URL(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
 class Historial(QMainWindow): #<=====Trabajar en la clase Historial
-    def __init__(self,ventanaAnterior):
+    def __init__(self,ventanaAnterior,objeto):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
+        self.objeto = objeto
         uic.loadUi(("Interfaz/gui/historial.ui"), self)
         self.resize(800, 600)
         self.btnatras.clicked.connect(self.back_to_main_window)
 
-
     def back_to_main_window(self):
             self.ventanaAnterior.show()
             self.close()
-
+        
+    def prueba(self):
+        print(self.objeto.articulo)
 
 def ejecutar():
     app = QApplication(sys.argv)
