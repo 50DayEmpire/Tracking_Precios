@@ -106,7 +106,10 @@ class tienda(QDialog):
         self.ingresarFila()
         #DiseñoTabla        
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-        self.tableWidget.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Interactive)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Interactive)
+        self.tableWidget.setColumnWidth(2, 0)
+        
         #Scollbar
         pixmap = QPixmap(t[0])
         self.empresa.setPixmap(pixmap)
@@ -115,8 +118,7 @@ class tienda(QDialog):
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
-
-
+            
         #deshabilitar tabla:
         self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada
@@ -179,36 +181,22 @@ class tienda(QDialog):
         #enable boton eliminar
         
 
-    def eliminarFila(self, row):        
-        #remove_row = row
-        lista=[]
-        rrow= self.tableWidget.cellClicked
-
-        print(f"--------- ELIMINAR FILA: ({row})------------------")
-        for row in range(row):
-            for column in range(self.tableWidget.columnCount()): #---Aqui obtiene los nombres y los valores de la fila que clickeas
-                item = (self.tableWidget.item(row, column))
-                if item is not None:
-                    lista.append(item.text())        
-        
-        for v in lista:
-            print(v)
-
-        self.tableWidget.removeRow(row)# <===== codigo para eliminar filas 
+    def eliminarFila(self, row):              
+        lista = []  
+        selected_rows = set(index.row() for index in self.tableWidget.selectedIndexes())
+        for row in selected_rows:                  
+            item = self.tableWidget.item(row, 0)
+            if item is not None:
+                lista.append(item.text())
+            self.tableWidget.removeRow(row)
+            print(f"La fila {row} fue eliminada. Datos: {lista}") 
         
         
-        """
-        #Si son varias filas selccionadas::
-        self.tableWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        selected_rows = (self.tableWidget.selectionModel().selectedRows())
-        print("nana", selected_rows)
-        for index in sorted(selected_rows, reverse=True):
-            self.tableWidget.removeRow(index.row())"""
-
-
-
         #f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
 
+
+    
+        
 class Anadir_URL(QMainWindow):
     def __init__(self, ventanaAnterior, tracker, img):
         super().__init__()
