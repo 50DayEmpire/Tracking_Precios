@@ -13,6 +13,7 @@ class trackingPrecios(scrapy.Spider):
     def start_requests(self):
         #para definir la URL del spider ejecutar con el atributo -a url=<url deseada>
         cadena = getattr(self, "url", None)
+        print(cadena.split(","))
         start_urls = cadena.split(",")
 
     def parse(self, response):

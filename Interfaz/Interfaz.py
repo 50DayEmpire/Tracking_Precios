@@ -10,12 +10,17 @@ from os.path import abspath, dirname, join, getsize
 import subprocess
 import re 
 
+class mitableWidget(QTableWidgetItem):
+    def __init__(self,objeto):
+        super().__init__()
+        self.objetoOculto = objeto
+
 class Splash(QMainWindow):
     splashClosed = pyqtSignal()
 
     def __init__(self):
         super().__init__()
-        actualizacionGeneralEncendida=False
+        actualizacionGeneralEncendida=True
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)  # Elimina el marco de la ventana
         uic.loadUi("interfaz/gui/inicio.ui", self)
@@ -41,9 +46,7 @@ class Splash(QMainWindow):
         self.splashClosed.emit()
 
     def updateGeneral(self):
-        f.actGeneral()
-        
-
+        f.actGeneral()        
 
 class MainWindow(QDialog):
     GalloClicked = pyqtSignal()  
@@ -300,6 +303,7 @@ class Anadir_URL(QMainWindow):
 
     def Anadir_producto(self):
         if self.url:
+            self.ventanaAnterior.vaciar()
             f.guardarTracker()
             self.back_to_main_window()
             self.ventanaAnterior.ingresarFila()
