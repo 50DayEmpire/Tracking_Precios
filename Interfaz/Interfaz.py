@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem, QAbstractItemView
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
 from PyQt6 import uic
 import sys
@@ -108,22 +108,37 @@ class tienda(QDialog):
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
-        self.btnEliminar_2.clicked.connect(self.eliminarFilas)
         """
         Agregar un llamado al metodo self.ventanaHistorial() al hacer doble clic en una celda de la tabla 
         para mostrar la ventana historial
-        """
+        """        
+        #deshabilitar tabla:
+        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada
+        self.tableWidget.cellClicked.connect(self.obtenerFila) #para obtener
+
+        #eliminar filas        
+        self.btnEliminar_2.clicked.connect(self.eliminarFila)
+        
 
     def act(self):
         f.actualizar(self)
 
-    def eliminarFilas(self):
-        lista=[]
-        # <=====  Aqui debe ir el codigo para eliminar filas
-        f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
-
+    
     def vaciar(self):
-        x="" #<===== Aqui tiene que ir el metodo para vaciar toda la tabla de la tienda
+        x=[]
+        print("---------VACIAR TABLA ------------------")
+        for row in range(self.tableWidget.rowCount()):
+            for column in range(self.tableWidget.columnCount()): #---Aqui obtiene todos los nombres y los valores
+                item = (self.tableWidget.item(row, column))
+                if item is not None:
+                    x.append(item.text())
+        
+        for v in x:
+            print(v)
+        self.tableWidget.setRowCount(0)
+        
+
 
     def crear_URL(self):
         self.ventanaUrl.show()
@@ -137,6 +152,7 @@ class tienda(QDialog):
         self.vaciar()
         productos = f.actualizar(self)
 
+
         for objeto in productos:
             self.tableWidget.insertRow(0)
             item = QTableWidgetItem(objeto.articulo)
@@ -144,11 +160,66 @@ class tienda(QDialog):
             self.tableWidget.setItem(0,0,item)
             self.tableWidget.setItem(0,1,item2)
 
-    def ventanaHistorial(self):
+    def ventanaHistorial(self, row, column):
+        print(f"Doble click en la celda ({row},{column})")
         self.historial = Historial()
         self.historial.show()
         self.hide()
 
+    def obtenerFila(self, row, column):
+        print(f"Estamos en la posición: ({row},{column})")
+        #enable boton eliminar
+        
+
+    def eliminarFila(self, row):        
+        #remove_row = row
+        lista=[]
+        rrow= self.tableWidget.cellClicked
+
+        print(f"--------- ELIMINAR FILA: ({row})------------------")
+        for row in range(row):
+            for column in range(self.tableWidget.columnCount()): #---Aqui obtiene los nombres y los valores de la fila que clickeas
+                item = (self.tableWidget.item(row, column))
+                if item is not None:
+                    lista.append(item.text())        
+        
+        for v in lista:
+            print(v)
+
+        self.tableWidget.removeRow(row)# <===== codigo para eliminar filas 
+        
+        
+        """
+        #Si son varias filas selccionadas::
+        self.tableWidget.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        selected_rows = (self.tableWidget.selectionModel().selectedRows())
+        print("nana", selected_rows)
+        for index in sorted(selected_rows, reverse=True):
+            self.tableWidget.removeRow(index.row())"""
+
+
+
+        #f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
+
+
+    def limpiarTabla(self):
+        """       
+        #remove_row = row
+        lista=[]
+
+        for row in range(self.tableWidget.rowCount()):
+            for column in range(self.tableWidget.columnCount()): #---Aqui obtiene todos los nombres y los valores
+                item = (self.tableWidget.item(row, column))
+                if item is not None:
+                    lista.append(item.text())
+
+        for v in lista:
+            print(v)
+        
+        #self.tableWidget.removeRow(remove_row)
+        """
+
+        
 class Anadir_URL(QMainWindow):
     def __init__(self, ventanaAnterior, tracker, img):
         super().__init__()
@@ -163,6 +234,7 @@ class Anadir_URL(QMainWindow):
         pixmap_segunda = QPixmap(self.img)
         self.btnlogo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.btnlogo.setPixmap(pixmap_segunda)
+
     
         #volver
         self.btnatras.clicked.connect(self.back_or_confirm)
@@ -241,7 +313,7 @@ class Anadir_URL(QMainWindow):
            
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
-class Historial(QDialog): #<=====Trabajar en la clase Historial
+class Historial(QMainWindow): #<=====Trabajar en la clase Historial
     def __init__(self):
         super().__init__()
         uic.loadUi(("Interfaz/gui/historial.ui"), self)
@@ -261,6 +333,7 @@ def ejecutar():
     thirdWin5 = tienda(["interfaz/gui/imagenes/imgp/LadyLee.png","tracking_ladylee","ladylee"],"Interfaz/gui/imagenes/imgp/ld.jpg")
     thirdWin6 = tienda(["interfaz/gui/imagenes/imgp/Radioshack.png","tracking_radioshack","radioshack"],"Interfaz/gui/imagenes/imgp/rad.png")
 
+    
     # Conectar señales y ranuras para controlar el flujo de la aplicación
     splash.splashClosed.connect(mainWin.show)
     mainWin.GalloClicked.connect(thirdWin1.show)
@@ -269,6 +342,7 @@ def ejecutar():
     mainWin.MotomundoClicked.connect(thirdWin4.show)
     mainWin.LeeClicked.connect(thirdWin5.show)
     mainWin.JordanClicked.connect(thirdWin6.show)
+
 
     splash.show()
 
