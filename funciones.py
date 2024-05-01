@@ -2,9 +2,11 @@ import json
 from os import path, system
 
 class Producto:
-    def __init__(self,articulo,precio):
+    def __init__(self,articulo,precio, ruta="", url=""):
         self.articulo = articulo
         self.precio = precio
+        self.ruta = ruta #de la imagen
+        self.url = url
 
 def guardarTracker():
     if path.getsize('tracking/articulos.json') > 0:
@@ -41,7 +43,7 @@ def actualizar(obj):
             articulos.append(i)
 
     for i in articulos:
-        productos.append(Producto(i['nombre'],i['precio'])) 
+        productos.append(Producto(i['nombre'],i['precio'],i['files'][0]["path"],i['url'])) 
     return productos
 
 def borrar(obj,lista):

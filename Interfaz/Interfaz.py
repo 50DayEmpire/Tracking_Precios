@@ -112,10 +112,8 @@ class tienda(QDialog):
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
-        """
-        Agregar un llamado al metodo self.ventanaHistorial() al hacer doble clic en una celda de la tabla 
-        para mostrar la ventana historial
-        """        
+
+
         #deshabilitar tabla:
         self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada
@@ -161,12 +159,18 @@ class tienda(QDialog):
             self.tableWidget.insertRow(0)
             item = QTableWidgetItem(objeto.articulo)
             item2 = QTableWidgetItem(objeto.precio)
+            item3 = QTableWidgetItem(objeto)
             self.tableWidget.setItem(0,0,item)
             self.tableWidget.setItem(0,1,item2)
+            self.tableWidget.setItem(0,2,item3)
+            
+        objeto1 = self.tableWidget.item(0,2)
+        
+        print(objeto1)
 
     def ventanaHistorial(self, row, column):
         print(f"Doble click en la celda ({row},{column})")
-        self.historial = Historial()
+        self.historial = Historial(self)
         self.historial.show()
         self.hide()
 
@@ -304,10 +308,18 @@ class Anadir_URL(QMainWindow):
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
 class Historial(QMainWindow): #<=====Trabajar en la clase Historial
-    def __init__(self):
+    def __init__(self,ventanaAnterior):
         super().__init__()
+        self.ventanaAnterior = ventanaAnterior
         uic.loadUi(("Interfaz/gui/historial.ui"), self)
         self.resize(800, 600)
+        self.btnatras.clicked.connect(self.back_to_main_window)
+
+
+    def back_to_main_window(self):
+            self.ventanaAnterior.show()
+            self.close()
+
 
 def ejecutar():
     app = QApplication(sys.argv)
