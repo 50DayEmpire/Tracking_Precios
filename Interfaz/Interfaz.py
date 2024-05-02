@@ -115,22 +115,19 @@ class tienda(QDialog):
         self.empresa.setPixmap(pixmap)
         self.ventanaUrl = Anadir_URL(self,t[1],rutaImg)
         
-        self.btnatras.clicked.connect(self.back_to_main_window)
+        self.btnatras.clicked.connect(self.back_to_main_window) #botones Tracking_GMG
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
             
-        #deshabilitar tabla:
-        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada
+        #deshabilitar tablas:
+        self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)        
+        self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada        
         self.tableWidget.cellClicked.connect(self.obtenerFila) #para obtener
-
         #eliminar filas        
         self.btnEliminar_2.clicked.connect(self.eliminarFila)
         
-
     def act(self):
         f.actualizar(self)
-
     
     def vaciar(self):
         x=[]
@@ -139,13 +136,10 @@ class tienda(QDialog):
             for column in range(self.tableWidget.columnCount()): #---Aqui obtiene todos los nombres y los valores
                 item = (self.tableWidget.item(row, column))
                 if item is not None:
-                    x.append(item.text())
-        
+                    x.append(item.text())     
         for v in x:
             print(v)
-        self.tableWidget.setRowCount(0)
-        
-
+        self.tableWidget.setRowCount(0)     
 
     def crear_URL(self):
         self.ventanaUrl.show()
@@ -158,7 +152,6 @@ class tienda(QDialog):
     def ingresarFila(self):
         self.vaciar()
         productos = f.actualizar(self)
-
 
         for objeto in productos:
             self.tableWidget.insertRow(0)
@@ -177,9 +170,7 @@ class tienda(QDialog):
         self.hide()
 
     def obtenerFila(self, row, column):
-        print(f"Estamos en la posición: ({row},{column})")
-        #enable boton eliminar
-        
+        print(f"Estamos en la posición: ({row},{column})")              
 
     def eliminarFila(self, row):              
         lista = []  
@@ -189,13 +180,10 @@ class tienda(QDialog):
             if item is not None:
                 lista.append(item.text())
             self.tableWidget.removeRow(row)
-            print(f"La fila {row} fue eliminada. Datos: {lista}") 
-        
+            print(f"La fila {row} fue eliminada. Datos: {lista}")         
         
         #f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
-
-
-    
+   
         
 class Anadir_URL(QMainWindow):
     def __init__(self, ventanaAnterior, tracker, img):
@@ -211,7 +199,6 @@ class Anadir_URL(QMainWindow):
         pixmap_segunda = QPixmap(self.img)
         self.btnlogo.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.btnlogo.setPixmap(pixmap_segunda)
-
     
         #volver
         self.btnatras.clicked.connect(self.back_or_confirm)
@@ -220,6 +207,7 @@ class Anadir_URL(QMainWindow):
         #Añadir producto en la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
         self.url = ""  # Inicializar la URL vacía
+
 
     #Funcion que verifica si la cadena ingresada tiene formato de una URL, utilizando el modulo re
     def es_url_valida(self, url):
@@ -233,7 +221,6 @@ class Anadir_URL(QMainWindow):
                                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             if reply == QMessageBox.StandardButton.No:
                 return
-
         self.back_to_main_window()
 
     def back_to_main_window(self):
@@ -292,25 +279,50 @@ class Anadir_URL(QMainWindow):
             f.guardarTracker()
             self.back_to_main_window()
             self.ventanaAnterior.ingresarFila()
-        else:
-           
+        else:           
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
-class Historial(QMainWindow): #<=====Trabajar en la clase Historial
+
+class Historial(QMainWindow): 
     def __init__(self,ventanaAnterior,objeto):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
         self.objeto = objeto
         uic.loadUi(("Interfaz/gui/historial.ui"), self)
         self.resize(800, 600)
+        self.tablahist.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.btnatras.clicked.connect(self.back_to_main_window)
+        self.prueba()
 
     def back_to_main_window(self):
             self.ventanaAnterior.show()
+            self.lbproducto.clear()
+            self.lbproducto.setText("Imagen del producto")
+            self.lbproducto.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.lbproducto.setStyleSheet("background-color: rgb(206, 206, 206);")
             self.close()
         
-    def prueba(self):
-        print(self.objeto.articulo)
+    def prueba(self):                                           #------------------------------------------
+        print("nombre dl articulo//", self.objeto.articulo)
+        self.nproducto.setText(self.objeto.articulo)
+        #tabla
+        self.tablahist.setRowCount(1)
+        self.tablahist.setItem(0,0, QTableWidgetItem("fecha x"))
+        self.tablahist.setItem(0,1, QTableWidgetItem(self.objeto.precio))
+
+        print("precio del articulo//", self.objeto.precio)
+        print("ruta del articulo//", self.objeto.ruta)
+        
+        #img
+        ruta_carpeta_img = ("tracking/imagenes/" + self.objeto.ruta)
+        print(ruta_carpeta_img)
+        print("url del articulo//", self.objeto.url)
+        self.lbproducto.setStyleSheet("background-color: transparent;")
+        if path.exists(ruta_carpeta_img):
+            pixmap = QPixmap(ruta_carpeta_img)
+            pixmap_ajustada = pixmap.scaled(self.lbproducto.size(), Qt.AspectRatioMode.KeepAspectRatio)
+            self.lbproducto.setPixmap(pixmap_ajustada)
+            self.lbproducto.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
 def ejecutar():
     app = QApplication(sys.argv)

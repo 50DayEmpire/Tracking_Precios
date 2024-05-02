@@ -317,23 +317,6 @@ background-color: transparent;
               </column>
               <column>
                <property name="text">
-                <string notr="true">Nombre del producto</string>
-               </property>
-               <property name="toolTip">
-                <string notr="true"/>
-               </property>
-               <property name="whatsThis">
-                <string notr="true"/>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Arial</family>
-                 <bold>true</bold>
-                </font>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string notr="true">Precio del producto</string>
                </property>
                <property name="toolTip">
