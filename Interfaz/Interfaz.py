@@ -313,7 +313,7 @@ class Historial(QMainWindow):
         # Tabla
         self.tablahist.setRowCount(1)
         # Crear objetos QTableWidgetItem y centrar el texto
-        item_fecha = QTableWidgetItem(self.objeto.fecha)
+        item_fecha = QTableWidgetItem(list(self.objeto.historial.keys())[0])
         item_fecha.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
         item_precio = QTableWidgetItem(self.objeto.precio)
         item_precio.setTextAlignment(Qt.AlignmentFlag.AlignCenter)

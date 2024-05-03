@@ -101,8 +101,6 @@ def actGeneral():
 def anadirNuevoPrecio():
     fechaActual = datetime.now()
     fecha = fechaActual.strftime("%d/%m/%Y")
-    if path.getsize('tracking/articulos.json') == 0 or path.getsize('tracking/temp.json'):
-        return
     with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
         base = json.load(archivo)
     with open('tracking/temp.json','r',encoding='utf-8') as temp:
@@ -110,9 +108,12 @@ def anadirNuevoPrecio():
     for articuloAnexo in anexo:
         for articuloBase in base:
             if articuloAnexo['url'] == articuloBase['url']:
-                if articuloAnexo['historial']!=articuloBase['historial']:
+                print("True")
+                if list(articuloAnexo['historial'].keys())[-1]!=list(articuloBase['historial'].keys())[-1]:
+                    print(articuloAnexo['historial'], articuloBase['historial'])
                     articuloBase['historial'][fecha] = articuloAnexo['historial'][fecha]
-                    print(articuloBase)
+                    print(articuloAnexo['historial'], articuloBase['historial'])
     with open('tracking/articulos.json','w',encoding='utf-8') as escritura:
         json.dump(base,escritura)
+
     #vaciar()
