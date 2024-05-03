@@ -87,5 +87,4 @@ def actGeneral():
     for articulo in base:
         urls += articulo['url']+","
     urls = urls[0:-1]
-    #print(path.dirname(path.abspath(__file__))) #<====== Revisar
     system("cd "+ path.dirname(path.abspath(__file__)) + "/tracking && scrapy crawl tracking_general -O temp.json -a url="+urls)

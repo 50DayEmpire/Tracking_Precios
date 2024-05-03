@@ -13,8 +13,9 @@ class trackingPrecios(scrapy.Spider):
     def start_requests(self):
         #para definir la URL del spider ejecutar con el atributo -a url=<url deseada>
         cadena = getattr(self, "url", None)
-        print(cadena.split(","))
-        start_urls = cadena.split(",")
+        urls = cadena.split(",")
+        for url in urls:
+            yield scrapy.Request(url,self.parse)
 
     def parse(self, response):
         producto = Producto()
@@ -71,8 +72,8 @@ class trackingPrecios(scrapy.Spider):
             producto["precio"] = temp[-1]
             producto["tienda"] = "radioshack"
             #el campo file_urls almacena las url de las imagenes a descargar
-            urlLarga = response.css('meta[property="og:image"]::attr(content)').get()
-            lista = urlLarga.split("?")
-            producto["file_urls"]=[lista[0]] # Radioshack usa imagenes formato .jpg
+            # urlLarga = response.css('meta[property="og:image"]::attr(content)').get()
+            # lista = urlLarga.split("?")
+            # producto["file_urls"]=[lista[0]] # Radioshack usa imagenes formato .jpg
 
         yield producto
