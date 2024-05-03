@@ -15,7 +15,8 @@ class trackingPrecios(scrapy.Spider):
         cadena = getattr(self, "url", None)
         urls = cadena.split(",")
         for url in urls:
-            yield scrapy.Request(url,self.parse)
+            if "radioshackla" not in url:
+                yield scrapy.Request(url,self.parse)
 
     def parse(self, response):
         producto = Producto()
