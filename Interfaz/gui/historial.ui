@@ -521,6 +521,12 @@ QPushButton:hover {
                <height>201</height>
               </rect>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>321</width>
+               <height>201</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>321</width>
