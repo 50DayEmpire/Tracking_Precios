@@ -18,17 +18,15 @@ class miTableWidgetItem(QTableWidgetItem):
 
 class Splash(QMainWindow):
     splashClosed = pyqtSignal()
+    actualizacionGeneralEncendida=False
 
     def __init__(self):
         super().__init__()
-        actualizacionGeneralEncendida=False
 
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)  # Elimina el marco de la ventana
         uic.loadUi("interfaz/gui/inicio.ui", self)
-        if actualizacionGeneralEncendida:
-            self.updateGeneral()
+        
         self.close_splash()
-
         # self.show_timer = QTimer(self)
         # self.show_timer.timeout.connect(self.close_splash)
         # self.show_timer.start(3000)
@@ -40,6 +38,8 @@ class Splash(QMainWindow):
         self.fade_animation.setStartValue(1.0)
         self.fade_animation.setEndValue(0.0)
         self.fade_animation.finished.connect(self.emit_splash_closed)
+        if Splash.actualizacionGeneralEncendida:
+            self.updateGeneral()
         self.fade_animation.start()
 
     def emit_splash_closed(self):

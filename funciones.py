@@ -1,12 +1,14 @@
 import json
 from os import path, system
+from datetime import datetime
 
 class Producto:
-    def __init__(self,articulo,precio, ruta="", url=""):
+    def __init__(self,articulo,precio, ruta="", url="",historial={}):
         self.articulo = articulo
         self.precio = precio
         self.ruta = ruta #de la imagen
         self.url = url
+        self.historial = historial
 
 def guardarTracker():
     if path.getsize('tracking/articulos.json') > 0:
@@ -43,7 +45,7 @@ def actualizar(obj):
             articulos.append(i)
 
     for i in articulos:
-        productos.append(Producto(i['nombre'],i['precio'],i['files'][0]["path"],i['url'])) 
+        productos.append(Producto(i['nombre'],i['precio'],i['files'][0]["path"],i['url'],i["historial"])) 
     return productos
 
 def borrar(obj,lista):
@@ -85,6 +87,32 @@ def actGeneral():
     with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
         base = json.load(archivo)
     for articulo in base:
-        urls += articulo['url']+","
+        if "radioshackla" not in articulo['url']:
+            urls += articulo['url']+","
     urls = urls[0:-1]
     system("cd "+ path.dirname(path.abspath(__file__)) + "/tracking && scrapy crawl tracking_general -O temp.json -a url="+urls)
+    #anadirNuevoPrecio()
+
+def anadirNuevoPrecio():
+    fechaActual = datetime.now()
+    fecha = fechaActual.strftime("%d/%m/%Y")
+    if path.getsize('tracking/articulos.json') == 0 or path.getsize('tracking/temp.json'):
+        return
+    with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
+        base = json.load(archivo)
+    with open('tracking/temp.json','r',encoding='utf-8') as temp:
+        anexo = json.load(temp)
+    for articuloAnexo in anexo:
+        for articuloBase in base:
+            if articuloAnexo['url'] == articuloBase['url']:
+                if articuloAnexo['historial']!=articuloBase['historial']:
+                    articuloBase['historial'][fecha] = articuloAnexo['historial'][fecha]
+                    print(articuloBase)
+    with open('tracking/articulos.json','w',encoding='utf-8') as escritura:
+        json.dump(base,escritura)
+    #vaciar()
+
+def obtenerFecha():
+        fechaActual = datetime.now()
+        fechaFormateada = fechaActual.strftime("%d/%m/%Y")
+        return fechaFormateada

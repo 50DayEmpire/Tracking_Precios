@@ -1,6 +1,7 @@
 import scrapy
 from tracking.items import Producto
 import json
+from funciones import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_spider_jetstereo"
@@ -17,6 +18,8 @@ class trackingPrecios(scrapy.Spider):
         producto["precio"]=response.css("p.salePrice::text").get()
         producto["url"] = getattr(self,"url",None)
         producto["tienda"] = "jetstereo"
+        fecha = obtenerFecha()
+        producto['historial'] = {fecha:producto["precio"]}
         #temp almacena la respuesta del selector "#__NEXT_DATA__::text" en formato json
         temp=json.loads(response.css("#__NEXT_DATA__::text").get())
         #ruta de acceso a la url de la imagen de producto en jetstereo

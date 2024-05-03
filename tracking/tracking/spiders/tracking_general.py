@@ -1,6 +1,8 @@
 import scrapy
 from tracking.items import Producto
 import json
+from datetime import datetime
+from funciones import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_general"
@@ -25,6 +27,8 @@ class trackingPrecios(scrapy.Spider):
             producto["nombre"]=response.css("span.base::text").get()
             producto["precio"]=response.css("span.price::text").get()
             producto["tienda"] = "gallo"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #el campo file_urls almacena las url de las imagenes a descargar
             producto["file_urls"]=[response.css("img.gallery-placeholder__image::attr(src)").get()] # GMG usa imagenes formato .jpg
 
@@ -33,6 +37,8 @@ class trackingPrecios(scrapy.Spider):
             temp =response.css("bdi::text").getall()
             producto["precio"] = temp[1]
             producto["tienda"] = "sycom"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #el campo file_urls almacena las url de las imagenes a descargar
             producto["file_urls"]=[response.css("div.woocommerce-product-gallery__image.slide.first > a::attr(href)").get()] # Sycom usa imagenes formato .png
         
@@ -40,6 +46,8 @@ class trackingPrecios(scrapy.Spider):
             producto["nombre"]=response.css("h1.product-page-title.m-1-::text").get()
             producto["precio"]=response.css("p.salePrice::text").get()
             producto["tienda"] = "jetstereo"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #temp almacena la respuesta del selector "#__NEXT_DATA__::text" en formato json
             temp=json.loads(response.css("#__NEXT_DATA__::text").get())
             #ruta de acceso a la url de la imagen de producto en jetstereo
@@ -55,6 +63,8 @@ class trackingPrecios(scrapy.Spider):
                 precio += i 
             producto["precio"] = precio
             producto["tienda"] = "diunsa"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #el campo file_urls almacena las url de las imagenes a descargar
             producto["file_urls"]=[response.css("img.vtex-store-components-3-x-productImageTag.vtex-store-components-3-x-productImageTag--main::attr(src)").get()] # Diunsa usa imagenes formato .webp
         
@@ -62,6 +72,8 @@ class trackingPrecios(scrapy.Spider):
             producto["nombre"] = response.css("h2.product-name::text").get()
             producto["precio"] = response.css("h3.price-primary::text").get()
             producto["tienda"] = "ladylee"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #el campo file_urls almacena las url de las imagenes a descargar
             urlcompleta = response.css("figure::attr(style)").get() # Ladylee usa imagenes formato .webp
             producto["file_urls"]=[urlcompleta[21:-2]]
@@ -71,6 +83,8 @@ class trackingPrecios(scrapy.Spider):
             temp = response.css("span.price::text").getall()
             producto["precio"] = temp[-1]
             producto["tienda"] = "radioshack"
+            fecha = obtenerFecha()
+            producto['historial'] = {fecha:precio}
             #el campo file_urls almacena las url de las imagenes a descargar
             # urlLarga = response.css('meta[property="og:image"]::attr(content)').get()
             # lista = urlLarga.split("?")

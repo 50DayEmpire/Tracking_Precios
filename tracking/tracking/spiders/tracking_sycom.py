@@ -1,5 +1,6 @@
 import scrapy
 from tracking.items import Producto
+from funciones import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_sycom"
@@ -18,6 +19,8 @@ class trackingPrecios(scrapy.Spider):
         producto["precio"] = temp[1]
         producto["url"] = getattr(self,"url",None)
         producto["tienda"] = "sycom"
+        fecha = obtenerFecha()
+        producto['historial'] = {fecha:producto["precio"]}
         #el campo file_urls almacena las url de las imagenes a descargar
         producto["file_urls"]=[response.css("div.woocommerce-product-gallery__image.slide.first > a::attr(href)").get()] # Sycom usa imagenes formato .png
         yield producto

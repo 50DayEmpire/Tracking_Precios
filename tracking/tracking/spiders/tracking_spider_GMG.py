@@ -1,5 +1,6 @@
 import scrapy
 from tracking.items import Producto
+from funciones import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_spider_GMG"
@@ -16,6 +17,8 @@ class trackingPrecios(scrapy.Spider):
         producto["precio"]=response.css("span.price::text").get()
         producto["url"] = getattr(self,"url",None)
         producto["tienda"] = "gallo"
+        fecha = obtenerFecha()
+        producto['historial'] = {fecha:producto['precio']}
         #el campo file_urls almacena las url de las imagenes a descargar
         producto["file_urls"]=[response.css("img.gallery-placeholder__image::attr(src)").get()] # GMG usa imagenes formato .jpg
         yield producto
