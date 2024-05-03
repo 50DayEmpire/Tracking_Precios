@@ -1,14 +1,15 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem, QAbstractItemView
-from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal
+from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal, QUrl
 from PyQt6 import uic
 import sys
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QFont, QDesktopServices
 from os import path
 import funciones as f
 import json
 from os.path import abspath, dirname, join, getsize
 import subprocess
 import re 
+
 
 class miTableWidgetItem(QTableWidgetItem):
     def __init__(self,objeto):
@@ -293,6 +294,7 @@ class Historial(QMainWindow):
         self.tablahist.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.btnatras.clicked.connect(self.back_to_main_window)
         self.prueba()
+        self.btncomprar.clicked.connect(self.sitio_web)
 
     def back_to_main_window(self):
             self.ventanaAnterior.show()
@@ -302,27 +304,47 @@ class Historial(QMainWindow):
             self.lbproducto.setStyleSheet("background-color: rgb(206, 206, 206);")
             self.close()
         
-    def prueba(self):                                           #------------------------------------------
+    def prueba(self):                                           
         print("nombre dl articulo//", self.objeto.articulo)
         self.nproducto.setText(self.objeto.articulo)
-        #tabla
+        self.nproducto.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # Tabla
         self.tablahist.setRowCount(1)
-        self.tablahist.setItem(0,0, QTableWidgetItem("fecha x"))
-        self.tablahist.setItem(0,1, QTableWidgetItem(self.objeto.precio))
-
+        # Crear objetos QTableWidgetItem y centrar el texto
+        item_fecha = QTableWidgetItem(self.objeto.fecha)
+        item_fecha.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+        item_precio = QTableWidgetItem(self.objeto.precio)
+        item_precio.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+        font = QFont()
+        font.setPointSize(12)  # Tamaño de letra 
+        item_fecha.setFont(font)
+        item_precio.setFont(font)
+        # Insertar elementos en la tabla
+        self.tablahist.setItem(0, 0, item_fecha)
+        self.tablahist.setItem(0, 1, item_precio)
         print("precio del articulo//", self.objeto.precio)
         print("ruta del articulo//", self.objeto.ruta)
         
         #img
-        ruta_carpeta_img = ("tracking/imagenes/" + self.objeto.ruta)
+        ruta_carpeta_img = "tracking/imagenes/" + self.objeto.ruta
         print(ruta_carpeta_img)
         print("url del articulo//", self.objeto.url)
         self.lbproducto.setStyleSheet("background-color: transparent;")
+
         if path.exists(ruta_carpeta_img):
             pixmap = QPixmap(ruta_carpeta_img)
             pixmap_ajustada = pixmap.scaled(self.lbproducto.size(), Qt.AspectRatioMode.KeepAspectRatio)
             self.lbproducto.setPixmap(pixmap_ajustada)
             self.lbproducto.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    
+    def sitio_web(self):
+        confirmacion = QMessageBox.information(self, "Confirmación", "Serás redirigido al sitio web oficial",
+                                            QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel)
+        if confirmacion == QMessageBox.StandardButton.Ok:
+            url = QUrl(self.objeto.url)
+            QDesktopServices.openUrl(url)   
+
+
 
 def ejecutar():
     app = QApplication(sys.argv)

@@ -104,15 +104,17 @@
            <widget class="QPushButton" name="btnatras">
             <property name="font">
              <font>
-              <pointsize>-1</pointsize>
+              <family>Arial</family>
+              <pointsize>16</pointsize>
               <bold>true</bold>
+              <kerning>false</kerning>
              </font>
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="toolTipDuration">
-             <number>1</number>
+             <number>-1</number>
             </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
@@ -120,7 +122,6 @@ background-color: transparent;
         border: none; 
         color: #fff; 
         padding: 10px 20px;
-        font-size: 20px;
         font-weight: bold; 
 }</string>
             </property>
@@ -269,7 +270,12 @@ background-color: transparent;
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(179, 189, 173);</string>
+               <string notr="true">QTableWidget {
+	background-color: rgb(179, 189, 173);    
+	color: rgb(13, 13, 13);   
+}
+
+</string>
               </property>
               <attribute name="horizontalHeaderMinimumSectionSize">
                <number>39</number>
@@ -470,6 +476,9 @@ QPushButton:hover {
               </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Ir al sitio oficial</string>
               </property>
               <property name="styleSheet">
                <string notr="true">QPushButton {
