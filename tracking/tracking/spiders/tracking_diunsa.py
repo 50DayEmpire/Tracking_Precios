@@ -1,5 +1,7 @@
 import scrapy
 from tracking.items import Producto
+from datetime import datetime
+from funciones import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_diunsa"
@@ -20,6 +22,9 @@ class trackingPrecios(scrapy.Spider):
         producto["precio"] = precio
         producto["url"] = getattr(self,"url",None)
         producto["tienda"] = "diunsa"
+        fecha = obtenerFecha()
+        producto['historial'] = {fecha:precio}
         #el campo file_urls almacena las url de las imagenes a descargar
         producto["file_urls"]=[response.css("img.vtex-store-components-3-x-productImageTag.vtex-store-components-3-x-productImageTag--main::attr(src)").get()] # Diunsa usa imagenes formato .webp
         yield producto
+    
