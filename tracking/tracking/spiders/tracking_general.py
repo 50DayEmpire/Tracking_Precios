@@ -2,7 +2,7 @@ import scrapy
 from tracking.items import Producto
 import json
 from datetime import datetime
-from funciones import obtenerFecha
+from fecha import obtenerFecha
 
 class trackingPrecios(scrapy.Spider):
     name = "tracking_general"

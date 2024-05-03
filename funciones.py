@@ -35,6 +35,9 @@ def actualizar(obj):
     articulos = []
     productos=[]
 
+    if path.getsize('tracking/articulos.json') == 0:
+        return []
+
     with open('tracking/articulos.json','r',encoding='utf-8') as archivoBase:
         if path.getsize('tracking/articulos.json') == 0:
             return
@@ -74,6 +77,8 @@ def vaciar():
         temp.write('')
 
 def filtrarDuplicados(anexo):
+    if path.getsize('tracking/articulos.json') == 0:
+        return True
     with open('tracking/articulos.json','r',encoding='utf-8') as archivo:
         base = json.load(archivo)
     if anexo[0] in base:
@@ -111,8 +116,3 @@ def anadirNuevoPrecio():
     with open('tracking/articulos.json','w',encoding='utf-8') as escritura:
         json.dump(base,escritura)
     #vaciar()
-
-def obtenerFecha():
-        fechaActual = datetime.now()
-        fechaFormateada = fechaActual.strftime("%d/%m/%Y")
-        return fechaFormateada

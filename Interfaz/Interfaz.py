@@ -152,6 +152,8 @@ class tienda(QDialog):
     def ingresarFila(self):
         self.vaciar()
         productos = f.actualizar(self)
+        if len(productos)==0:
+            return
 
         for objeto in productos:
             self.tableWidget.insertRow(0)
