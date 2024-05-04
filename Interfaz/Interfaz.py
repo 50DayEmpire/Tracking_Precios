@@ -1,15 +1,19 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem, QAbstractItemView
 from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal, QUrl
-from PyQt6 import uic
+from PyQt6 import uic, QtCore
 import sys
 from PyQt6.QtGui import QPixmap, QFont, QDesktopServices
 from os import path
+from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QLabel, QMessageBox, QAbstractItemView
+from PyQt6.QtCore import Qt, QTimer
+import pygame
 import funciones as f
 import json
 from os.path import abspath, dirname, join, getsize
 import subprocess
 import re 
-
+from PyQt6.QtCore import Qt, QRegularExpression
+from PyQt6.QtGui import QRegularExpressionValidator
 
 class miTableWidgetItem(QTableWidgetItem):
     def __init__(self,objeto):
@@ -110,6 +114,7 @@ class tienda(QDialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Interactive)
         self.tableWidget.setColumnWidth(2, 0)
+        self.tableWidget.setColumnHidden(2, True)#columna oculta
         
         #Scollbar
         pixmap = QPixmap(t[0])
@@ -165,6 +170,11 @@ class tienda(QDialog):
             self.tableWidget.setItem(0,1,item2)
             self.tableWidget.setItem(0,2,item3)
 
+        for fila in range(self.tableWidget.rowCount()):
+            item = self.tableWidget.item(fila, 1)
+            if item is not None:
+                item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                
     def ventanaHistorial(self, row, column):
         print(f"Doble click en la celda ({row},{column})")
         objeto = self.tableWidget.item(row,2)
@@ -210,7 +220,7 @@ class Anadir_URL(QMainWindow):
         #Añadir producto en la lista de tracking
         self.btnProducto.clicked.connect(self.Anadir_producto)
         self.url = ""  # Inicializar la URL vacía
-
+        
 
     #Funcion que verifica si la cadena ingresada tiene formato de una URL, utilizando el modulo re
     def es_url_valida(self, url):
@@ -261,8 +271,7 @@ class Anadir_URL(QMainWindow):
                 self.nproduct.setText(nombre_producto)
 
                 self.mostrar_ultima_imagen()
-                self.url = url  # Actualizar la URL actual
-            return True
+                self.url = url  
         else:
             QMessageBox.warning(self, "Advertencia", "La URL ingresada no es válida. Por favor, ingrese una URL válida.")
             return False
@@ -291,13 +300,20 @@ class Historial(QMainWindow):
         super().__init__()
         self.ventanaAnterior = ventanaAnterior
         self.objeto = objeto
-        uic.loadUi(("Interfaz/gui/historial.ui"), self)
+        uic.loadUi("Interfaz/gui/historial.ui", self) 
         self.resize(800, 600)
         self.tablahist.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.btnatras.clicked.connect(self.back_to_main_window)
-        self.prueba()
+        self.prueba()  
         self.btncomprar.clicked.connect(self.sitio_web)
-
+        self.btnalerta.clicked.connect(self.notificacion)
+        pygame.init()
+        self.lbnoti.setStyleSheet("background-color: green; color: white; font-weight: bold; padding: 10px;")
+        self.lbnoti.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.lbnoti.hide()
+        validator = QRegularExpressionValidator(QRegularExpression("[0-9]+"))  # Permite solo números   
+        self.textalerta.setValidator(validator)
+        
     def back_to_main_window(self):
             self.ventanaAnterior.show()
             self.lbproducto.clear()
@@ -346,6 +362,22 @@ class Historial(QMainWindow):
             url = QUrl(self.objeto.url)
             QDesktopServices.openUrl(url)   
 
+    def notificacion(self):
+        precio = self.textalerta.text()
+            
+        if precio:
+            self.lbnoti.setText("¡Alerta guardada!")
+            self.lbnoti.show()
+            self.textalerta.clear()
+            # Reproducir un sonido
+            sonido_path = "Interfaz/correct.mp3"  # Asegúrate de que la ruta al archivo de sonido sea correcta
+            pygame.mixer.music.load(sonido_path)
+            pygame.mixer.music.play()
+            QTimer.singleShot(2000, self.lbnoti.hide)
+        else:
+            QMessageBox.warning(self, "Advertencia", "Por favor, ingrese la cantidad de dinero para activar la alerta")
+            
+            
 
 
 def ejecutar():
