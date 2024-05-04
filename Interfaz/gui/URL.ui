@@ -517,7 +517,6 @@ background-color: rgb(184, 184, 184);</string>
     color: white;
     padding: 10px;
     margin: 20px;
-    cursor: wait; 
 }
 
 QPushButton:hover {

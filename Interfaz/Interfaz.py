@@ -1,19 +1,15 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QHeaderView, QTableWidgetItem, QAbstractItemView
-from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal, QUrl
+from PyQt6.QtCore import QTimer, QPropertyAnimation, Qt, pyqtSignal, QUrl, QRegularExpression
 from PyQt6 import uic, QtCore
 import sys
-from PyQt6.QtGui import QPixmap, QFont, QDesktopServices
+from PyQt6.QtGui import QPixmap, QFont, QDesktopServices, QRegularExpressionValidator
 from os import path
-from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QLabel, QMessageBox, QAbstractItemView
-from PyQt6.QtCore import Qt, QTimer
 import pygame
 import funciones as f
 import json
 from os.path import abspath, dirname, join, getsize
 import subprocess
 import re 
-from PyQt6.QtCore import Qt, QRegularExpression
-from PyQt6.QtGui import QRegularExpressionValidator
 
 class miTableWidgetItem(QTableWidgetItem):
     def __init__(self,objeto):
@@ -61,8 +57,6 @@ class MainWindow(QDialog):
     LeeClicked = pyqtSignal() 
     JordanClicked = pyqtSignal() 
 
-    
-
     def __init__(self):
         super().__init__()
         uic.loadUi("Interfaz/gui/Tracking_main.ui", self)
@@ -75,7 +69,8 @@ class MainWindow(QDialog):
         self.btnTecknos.clicked.connect(self.Motomundo)
         self.btnLadyLee.clicked.connect(self.Lee)
         self.btnRadioshack.clicked.connect(self.Jordan)
-
+        self.btnos.clicked.connect(self.nosotros)  
+        self.ventana_nosotros = Nosotros
 
     def Gallo(self):
         self.GalloClicked.emit()  
@@ -101,6 +96,11 @@ class MainWindow(QDialog):
         self.JordanClicked.emit()  
         self.close()
 
+    def nosotros(self):
+        self.ventana_nosotros = Nosotros()
+        self.ventana_nosotros.show()
+        self.hide()
+
 class tienda(QDialog):
     def __init__(self,t,rutaImg):
         super().__init__()
@@ -124,7 +124,7 @@ class tienda(QDialog):
         self.btnatras.clicked.connect(self.back_to_main_window) #botones Tracking_GMG
         self.btnactualizar.clicked.connect(self.ingresarFila)
         self.btnPlusUrl.clicked.connect(self.crear_URL)
-            
+        
         #deshabilitar tablas:
         self.tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)        
         self.tableWidget.cellDoubleClicked.connect(self.ventanaHistorial) #llamada        
@@ -174,7 +174,7 @@ class tienda(QDialog):
             item = self.tableWidget.item(fila, 1)
             if item is not None:
                 item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                
+
     def ventanaHistorial(self, row, column):
         print(f"Doble click en la celda ({row},{column})")
         objeto = self.tableWidget.item(row,2)
@@ -196,8 +196,18 @@ class tienda(QDialog):
             print(f"La fila {row} fue eliminada. Datos: {lista}")         
         
         #f.borrar(self,lista)  #<===== buscar la forma de mandar una lista con los nombres de los articulos en las filas a borrar (para borrarlos del archivo .json tambien)
-   
-        
+      
+class Nosotros(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi("Interfaz/gui/nosotros.ui", self)
+       
+        self.btnreg.clicked.connect(self.back_to_main_window)
+
+    def back_to_main_window(self):
+        self.close() 
+        mainWin.show()
+
 class Anadir_URL(QMainWindow):
     def __init__(self, ventanaAnterior, tracker, img):
         super().__init__()
@@ -294,7 +304,6 @@ class Anadir_URL(QMainWindow):
         else:           
             QMessageBox.warning(self, "Advertencia", "Por favor, Haga la busqueda de su producto.")
 
-
 class Historial(QMainWindow): 
     def __init__(self,ventanaAnterior,objeto):
         super().__init__()
@@ -370,16 +379,13 @@ class Historial(QMainWindow):
             self.lbnoti.show()
             self.textalerta.clear()
             # Reproducir un sonido
-            sonido_path = "Interfaz/correct.mp3"  # Asegúrate de que la ruta al archivo de sonido sea correcta
+            sonido_path = "Interfaz/correct.mp3"  
             pygame.mixer.music.load(sonido_path)
             pygame.mixer.music.play()
             QTimer.singleShot(2000, self.lbnoti.hide)
         else:
             QMessageBox.warning(self, "Advertencia", "Por favor, ingrese la cantidad de dinero para activar la alerta")
             
-            
-
-
 def ejecutar():
     app = QApplication(sys.argv)
 

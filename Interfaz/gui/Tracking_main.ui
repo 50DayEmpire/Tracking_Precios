@@ -113,52 +113,74 @@
            <property name="lineWidth">
             <number>0</number>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="spacing">
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>220</x>
+              <y>60</y>
+              <width>359</width>
+              <height>32</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Leelawadee UI</family>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="toolTipDuration">
              <number>0</number>
             </property>
-            <property name="leftMargin">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="lineWidth">
              <number>0</number>
             </property>
-            <property name="topMargin">
-             <number>0</number>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#f7f7f7;&quot;&gt;¡EMPIEZA A HACER TRACKING!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
-            <property name="rightMargin">
-             <number>0</number>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
-            <property name="bottomMargin">
-             <number>0</number>
+           </widget>
+           <widget class="QPushButton" name="btnos">
+            <property name="geometry">
+             <rect>
+              <x>680</x>
+              <y>-10</y>
+              <width>131</width>
+              <height>51</height>
+             </rect>
             </property>
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <family>Leelawadee UI</family>
-                <pointsize>12</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="toolTipDuration">
-               <number>0</number>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::LeftToRight</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="lineWidth">
-               <number>0</number>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#f7f7f7;&quot;&gt;¡EMPIEZA A HACER TRACKING!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>8</pointsize>
+              <underline>true</underline>
+              <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+background-color: transparent;
+        border: none; 
+
+	color: rgb(213, 213, 213);
+        padding: 10px 20px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Sobre nosotros</string>
+            </property>
+           </widget>
           </widget>
          </item>
          <item>
